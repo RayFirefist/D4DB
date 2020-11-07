@@ -34,11 +34,10 @@ class DjL10n {
     // Getting the specific string (if not translated yet, it will safely return just the variable)
     getString(id) {
         let out = this.data[id]
-        if (out === undefined || out === null) {
+        if (out === undefined || out === null)
             out = this.default[id]
-            if (out === undefined || out === null)
-                out = id;
-        }
+        if (out === undefined || out === null)
+            out = id;
         return out;
     }
 }

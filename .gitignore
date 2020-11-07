@@ -35,3 +35,6 @@ yarn-error.log*
 
 # beatmaps
 public/maps/*.png
+
+# drafts
+.drafts/*
