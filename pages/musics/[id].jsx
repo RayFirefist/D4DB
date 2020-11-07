@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core';
 const consts = require('../../consts.json')
 const languages = new l10n();
 
-class DjCardsEntryPage extends React.Component {
+class DjMusicEntryPage extends React.Component {
 
     constructor(props) {
         super(props)
@@ -104,4 +104,4 @@ class DjCardsEntryPage extends React.Component {
     }
 }
 
-export default withRouter(DjCardsEntryPage);
+export default withRouter(DjMusicEntryPage);

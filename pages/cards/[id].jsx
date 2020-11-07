@@ -3,6 +3,7 @@ import { withRouter } from 'next/router';
 import AppBase from '../../components/common/base.jsx'
 import l10n from '../../utils/l10n/l10n';
 import { Button } from '@material-ui/core';
+import RowInformation from '../../components/common/rowInfo.jsx';
 
 const consts = require('../../consts.json')
 const languages = new l10n();
@@ -86,7 +87,7 @@ class DjCardsEntryPage extends React.Component {
         const lang = languages.getLanguage()
         const charaName = lang === "ja" ? chara.FullName : chara.FullNameEnglish;
 
-        const body = <div >
+        return <div >
 
             {/* Head */}
             <div align="left">
@@ -99,14 +100,34 @@ class DjCardsEntryPage extends React.Component {
                 <Button type="primary" onClick={() => this.swapIllust()} hidden={card.Rarity < 3}>{languages.getString("BUTTON_CHANGE_ARTWORK")}</Button>
             </div>
 
-
             <br /><br />
 
             {/* Information */}
+            <div align="left">
+                <RowInformation left={languages.getString("CARD_CHARA_NAME")} right={charaName} />
+                <RowInformation left={languages.getString("CARD_NAME")} right={card.CardName} />
+                <RowInformation left={languages.getString("CARD_SKILL_NAME")} right={card.SkillName} />
+                <RowInformation left={languages.getString("CARD_GACHA_MESSAGE")} right={card.GachaMessage} hidden={card.GachaMessage === ""} />
+            </div>
 
-        </div>
+            <br /><br />
 
-        return body;
+            {/* Cards Parameter */}
+            <div align="left">
+                <h1>{languages.getString("CARD_PARAMETERS_TITLE")}</h1>
+                <RowInformation left={languages.getString("CARD_PARAMETERS_1")} right={card.MaxParameters[0]} />
+                <RowInformation left={languages.getString("CARD_PARAMETERS_2")} right={card.MaxParameters[1]} />
+                <RowInformation left={languages.getString("CARD_PARAMETERS_3")} right={card.MaxParameters[2]} />
+                <RowInformation left={languages.getString("CARD_PARAMETERS_POWER")} right={card.MaxParameters[2] + card.MaxParameters[1] + card.MaxParameters[0]} />
+            </div>
+
+            {/* Cards Assets */}
+            <div align="left">
+                <h1>{languages.getString("CARD_ILLUST_TITLE")}</h1>
+                
+            </div>
+
+        </div>;
     }
 }
 
