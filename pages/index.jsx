@@ -1,7 +1,15 @@
-import Head from 'next/head'
-import Drawer from '../components/drawer.jsx'
-import styles from '../styles/Home.module.css'
+import React from 'react';
+//import Head from 'next/head'
+import Drawer from '../components/common/base.jsx'
+//import styles from '../styles/Home.module.css'
 
-export default function Home() {
-    return <Drawer/>
+class HomePage extends React.Component {
+    render() {
+        //<Drawer/>
+        return <div>
+            <Drawer/>
+        </div>
+    }
 }
+
+export default HomePage;

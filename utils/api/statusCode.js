@@ -1,0 +1,12 @@
+const httpStatus = {
+    HTTP_OK: 200,
+    HTTP_BAD_REQUEST: 400,
+    HTTP_UNAUTHORIZED: 401,
+    HTTP_UNAUTHENTICATED: 403,
+    HTTP_NOT_FOUND: 404,
+    HTTP_METHOD_NOT_ALLOWED: 405,
+    HTTP_GONE: 410,
+    HTTP_INTERNAL_ERROR: 500
+}
+
+export default httpStatus

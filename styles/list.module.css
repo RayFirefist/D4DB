@@ -1,0 +1,26 @@
+.title {
+    text-align: left;
+}
+
+.cardIcon {
+    max-width: 85px;
+    width: 100%;
+}
+
+.musicIcon {
+    max-width: 150px;
+    width: 100%;
+}
+
+.bannerIcon {
+    width: 100%;
+    max-width: 300px;
+}
+
+
+/* card tag, not the card */
+
+.card {
+    padding: 30px;
+    margin: 30px;
+}

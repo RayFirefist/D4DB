@@ -2,3 +2,33 @@
     color: white;
     background-color: "#2e51a3";
 }
+
+.root {
+    display: flex;
+}
+
+.drawer {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.appBar {
+    margin-left: 240px;
+    width: 'calc(100% - 240px)';
+}
+
+.menuButton {}
+
+.drawerPaper {
+    width: 240px;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.links {
+    text-decoration: "none";
+    color: "primary";
+}

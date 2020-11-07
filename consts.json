@@ -1,7 +1,8 @@
 {
     "name": "ダミー",
     "version": "0.0.1",
-    "cdn": "",
+    "cdn": "http://localhost:5000/",
     "l10n_path": "/l10n/",
-    "beatmaps_path": "/maps/"
+    "beatmaps_path": "/maps/",
+    "debug_api": true
 }

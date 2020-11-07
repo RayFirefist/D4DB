@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 # beatmaps
-public/maps/
+public/maps/*.png

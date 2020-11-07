@@ -1,9 +1,9 @@
 import React from 'react';
-import Drawer from '../components/drawer.jsx'
+import Drawer from '../components/common/base.jsx'
 
 class DjCreditsPage extends React.Component {
     render() {
-        return <Drawer body={<h1>Credits Page</h1>} path={['Home', 'Credits']}/>
+        return <Drawer Body={<h1>Credits Page</h1>} path={['Home', 'Credits']}/>
     }
 }
 

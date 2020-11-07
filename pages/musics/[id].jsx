@@ -17,8 +17,7 @@ class DjCardsEntryPage extends React.Component {
             error: false,
             loading: true,
             // db
-            card: {},
-            character: {},
+            music: {},
             // page
             illust: 0
         }
@@ -31,7 +30,7 @@ class DjCardsEntryPage extends React.Component {
 
     componentDidMount() {
         fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: ['CardMaster', 'CharacterMaster'] }),
+            body: JSON.stringify({ dbs: ['MusicMaster'] }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -43,20 +42,18 @@ class DjCardsEntryPage extends React.Component {
                     return this.setState({ error: json.error, loading: false })
 
                 json = json.result
-                let card = json['CardMaster'][this.state.id]
+                let music = json['MusicMaster'][this.state.id]
 
-                if (card === undefined)
+                if (music === undefined)
                     return this.setState({ error: "element not found" })
-
-                let chara = json.CharacterMaster[card['Character']]
-                this.setState({ card: card, character: chara, loading: false })
+                this.setState({ music: music, loading: false })
             })
             .catch(err => this.setState({ error: err, loading: false }))
     }
 
     getIllustUrl() {
-        const card = this.state.card;
-        return consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_" + this.state.illust + ".jpg"
+        let id = this.state.music.Id.toString().padStart(7, "0")
+        return consts.cdn + "music_jacket/music_jacket_" + id + ".jpg"
     }
 
     swapIllust() {
@@ -81,23 +78,20 @@ class DjCardsEntryPage extends React.Component {
         if (this.state.error)
             return this.state.error
 
-        const card = this.state.card;
+        const music = this.state.music;
         const chara = this.state.character;
         const lang = languages.getLanguage()
-        const charaName = lang === "ja" ? chara.FullName : chara.FullNameEnglish;
+        //const charaName = lang === "ja" ? chara.FullName : chara.FullNameEnglish;
 
         const body = <div >
 
             {/* Head */}
             <div align="left">
-                <h1 style={{ fontSize: "34px" }}>{card.CardName} - {charaName}</h1>
+                <h1 style={{ fontSize: "34px" }}>{music.Name}</h1>
             </div>
-            <img src={this.getIllustUrl()} style={{ width: "100%" }}></img>
+            <img src={this.getIllustUrl()} style={{ width: "100%", maxWidth: "400px" }}></img>
             <br></br>
             <br></br>
-            <div hidden={card.Rarity < 3}>
-                <Button type="primary" onClick={() => this.swapIllust()} hidden={card.Rarity < 3}>{languages.getString("BUTTON_CHANGE_ARTWORK")}</Button>
-            </div>
 
 
             <br /><br />
