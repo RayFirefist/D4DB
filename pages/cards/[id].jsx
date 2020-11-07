@@ -4,6 +4,7 @@ import AppBase from '../../components/common/base.jsx'
 import l10n from '../../utils/l10n/l10n';
 import { Button } from '@material-ui/core';
 import RowInformation from '../../components/common/rowInfo.jsx';
+import timestampToString from '../../utils/time/timeString.js';
 
 const consts = require('../../consts.json')
 const languages = new l10n();
@@ -106,8 +107,11 @@ class DjCardsEntryPage extends React.Component {
             <div align="left">
                 <RowInformation left={languages.getString("CARD_CHARA_NAME")} right={charaName} />
                 <RowInformation left={languages.getString("CARD_NAME")} right={card.CardName} />
+                <RowInformation left={languages.getString("CARD_RARITY")} right={card.Rarity} />
+                <RowInformation left={languages.getString("CARD_ATTRIBUTE")} right={languages.getString("COMMON_ATTRIBUTE_{0}".format(card.Attribute))} />
                 <RowInformation left={languages.getString("CARD_SKILL_NAME")} right={card.SkillName} />
                 <RowInformation left={languages.getString("CARD_GACHA_MESSAGE")} right={card.GachaMessage} hidden={card.GachaMessage === ""} />
+                <RowInformation left={languages.getString("CARD_RELEASE_DATE")} right={timestampToString(card.StartDate)}/>
             </div>
 
             <br /><br />
