@@ -135,7 +135,7 @@ class ResponsiveBase extends React.Component {
             </nav>
             <div align="center" style={{width: "100%"}}>{/** className={classes.content} */}
                 <div className={classes.toolbar} />
-                <div style={{ maxWidth: "800px", padding: "10px" }}>
+                <div style={{ maxWidth: "800px", padding: "50px" }}>
                     {this.props.body}
                 </div>
             </div>

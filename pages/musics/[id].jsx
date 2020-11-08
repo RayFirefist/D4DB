@@ -42,10 +42,11 @@ class DjMusicEntryPage extends React.Component {
                     return this.setState({ error: json.error, loading: false })
 
                 json = json.result
-                let music = json['MusicMaster'][this.state.id]
+                console.log(json.MusicMaster, typeof this.state.id)
+                let music = json.MusicMaster[this.state.id]
 
                 if (music === undefined)
-                    return this.setState({ error: "element not found" })
+                    return this.setState({ error: "element not found", loading: false })
                 this.setState({ music: music, loading: false })
             })
             .catch(err => this.setState({ error: err, loading: false }))
@@ -79,11 +80,12 @@ class DjMusicEntryPage extends React.Component {
             return this.state.error
 
         const music = this.state.music;
-        const chara = this.state.character;
         const lang = languages.getLanguage()
         //const charaName = lang === "ja" ? chara.FullName : chara.FullNameEnglish;
 
-        const body = <div >
+        console.log(music);
+        
+        return <div >
 
             {/* Head */}
             <div align="left">
@@ -97,10 +99,9 @@ class DjMusicEntryPage extends React.Component {
             <br /><br />
 
             {/* Information */}
+            
 
-        </div>
-
-        return body;
+        </div>;
     }
 }
 

@@ -56,7 +56,7 @@ abstract class DjAbstractListPage extends React.Component {
         console.log("display more")
     }
 
-    renderElements() {
+    renderElements(): object {
         throw new Error("renderElements must be implemented first")
     }
 
@@ -69,8 +69,8 @@ abstract class DjAbstractListPage extends React.Component {
             return this.state.error
 
         const classes = this.classes;
-        const strings = this.strings;
-        const elements = this.renderElements();
+        const strings: l10n = this.strings;
+        const elements: any = this.renderElements();
 
         console.log(elements);
 
@@ -81,7 +81,10 @@ abstract class DjAbstractListPage extends React.Component {
                 <h1>{strings.getString(this.title)}</h1>
             </div>
 
-            <br /><br />
+            <br />
+            <div style={{ textAlign: "left" }}>
+                {strings.getString("COMMON_ENTRIES").format(elements.length)}
+            </div>
 
             {/* Information */}
             {elements}
