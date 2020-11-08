@@ -4,6 +4,7 @@
     "NEWS_TITLE": "News",
     "DATABASE_CATEGORY_TITLE": "Database",
     "COMMON_ENTRIES": "{0} Entries found",
+    "COMMON_LOADING": "Loading...",
     "BUTTON_CHANGE_ARTWORK": "Change Artwork",
     "BUTTON_DOWNLOAD": "Download",
     "BUTTON_CLOSE": "Close",

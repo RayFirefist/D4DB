@@ -1,6 +1,7 @@
 import React from 'react';
 import l10n from '../../utils/l10n/l10n';
 import classes from '../../styles/list.module.css';
+import LoadingComponent from './loading';
 
 const strings = new l10n();
 
@@ -63,7 +64,7 @@ abstract class DjAbstractListPage extends React.Component {
     render() {
 
         if (this.state.loading)
-            return "Loading..."
+            return <LoadingComponent/>
 
         if (this.state.error)
             return this.state.error

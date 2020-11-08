@@ -1,6 +1,6 @@
 {
-    "name": "ダミー",
-    "version": "0.0.1",
+    "name": "D4DB (仮)",
+    "version": "0.0.2",
     "cdn": "http://localhost:5000/",
     "l10n_path": "/l10n/",
     "beatmaps_path": "/maps/",
