@@ -14,6 +14,7 @@ abstract class DjAbstractListPage extends React.Component {
   protected getElements;
   protected classes;
   protected strings: l10n;
+  protected hideEntriesAmount: boolean;
   public state = {
     // standard
     error: false,
@@ -81,7 +82,7 @@ abstract class DjAbstractListPage extends React.Component {
         </div>
 
         <br />
-        <div style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left" }} hidden={this.hideEntriesAmount}>
           {strings.getString("COMMON_ENTRIES").format(elements.length)}
         </div>
 

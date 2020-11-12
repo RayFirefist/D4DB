@@ -7,8 +7,6 @@ import ResponsiveBase from '../components/common/base';
 // Theme constant
 //import theme from './../utils/darkMode/darkMode';
 
-const consts = require('../consts.json');
-
 // eslint-disable-next-line
 String.prototype.format = function () {
     let a = this;

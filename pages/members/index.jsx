@@ -7,11 +7,13 @@ import consts from "../../consts.json";
 import { Card, Grid, Typography } from "@material-ui/core";
 
 import AbstractList from "../../components/common/listPage.tsx";
+
 class DjMembersListPage extends AbstractList {
   constructor(props) {
     super(props);
     this.databases = ["CharacterMaster", "UnitMaster"];
     this.title = "MEMBERS_TITLE";
+    this.hideEntriesAmount = true;
   }
 
   getIllustUrl(member) {
