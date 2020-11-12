@@ -36,6 +36,7 @@ const styles = theme => ({
         },
     },
     appBar: {
+        display: 'block',
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
