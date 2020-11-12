@@ -123,7 +123,7 @@ class DjCardsEntryPage extends React.Component {
 
             {/* Information */}
             <div align="left">
-                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={charaName} />
+                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<ImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{width: "100%", maxWidth: "50px"}}/></div>} />
                 <RowInformation left={strings.getString("CARD_NAME")} right={card.CardName} />
                 <RowInformation left={strings.getString("CARD_RARITY")} right={card.Rarity} />
                 <RowInformation left={strings.getString("CARD_ATTRIBUTE")} right={strings.getString("COMMON_ATTRIBUTE_{0}".format(card.Attribute))} />
@@ -235,7 +235,7 @@ class DjCardsEntryPage extends React.Component {
                         <Button onClick={() => window.open(this.state.illustUrl)}>{strings.getString("BUTTON_DOWNLOAD")}</Button>
                         <br /><br />
                         <Button onClick={() => this.closeModal()}>{strings.getString("BUTTON_CLOSE")}</Button>
-                        <br /><br/>
+                        <br /><br />
                     </Paper>
                 </div>
             </Modal>

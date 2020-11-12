@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import '../styles/globals.css';
+import '../styles/globals.css'
+import consts from '../consts.json';
 import ResponsiveBase from '../components/common/base';
 
 // Theme constant
@@ -9,7 +10,7 @@ import ResponsiveBase from '../components/common/base';
 const consts = require('../consts.json');
 
 // eslint-disable-next-line
-String.prototype.format = function() {
+String.prototype.format = function () {
     let a = this;
     for (let k in arguments) {
         a = a.replace('{' + k + '}', arguments[k]);
@@ -20,7 +21,7 @@ String.prototype.format = function() {
 };
 
 // eslint-disable-next-line
-Date.prototype.addDays = function(days) {
+Date.prototype.addDays = function (days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
@@ -53,6 +54,7 @@ class MyApp extends React.Component {
                         name="viewport"
                         content="minimum-scale=1, initial-scale=1, width=device-width"
                     />
+                    <script src = "http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
                 </Head>
                 <ResponsiveBase
                     body={<Component {...pageProps} />}
