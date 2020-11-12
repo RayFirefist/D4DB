@@ -1,97 +1,95 @@
-import React from 'react';
-import l10n from '../../utils/l10n/l10n';
-import classes from '../../styles/list.module.css';
-import LoadingComponent from './loading';
+import React from "react";
+import l10n from "../../utils/l10n/l10n";
+import classes from "../../styles/list.module.css";
+import LoadingComponent from "./loading";
+import { Typography } from "@material-ui/core";
 
 const strings = new l10n();
 
 abstract class DjAbstractListPage extends React.Component {
+  protected databases: object = [];
+  protected title: string = "DUMMY_TITLE";
+  protected lang: string;
+  protected isJp: boolean;
+  protected getElements;
+  protected classes;
+  protected strings: l10n;
+  public state = {
+    // standard
+    error: false,
+    loading: true,
+    // db
+    databases: {},
+    // ui
+    displayedAmounts: 10,
+  };
 
-    protected databases: object = [];
-    protected title: string = "DUMMY_TITLE";
-    protected lang: string;
-    protected isJp: boolean;
-    protected getElements;
-    protected classes;
-    protected strings: l10n;
-    public state = {
-        // standard
-        error: false,
-        loading: true,
-        // db
-        databases: {},
-        // ui
-        displayedAmounts: 10,
-    }
+  constructor(props) {
+    super(props);
+    this.lang = strings.getLanguage();
+    this.isJp = this.lang === "ja";
+    this.classes = classes;
+    this.strings = strings;
+  }
 
-    constructor(props) {
-        super(props);
-        this.lang = strings.getLanguage();
-        this.isJp = this.lang === "ja";
-        this.classes = classes;
-        this.strings = strings;
-    }
+  static async getInitialProps(ctx) {
+    //console.log(ctx)
+    return { arg: null };
+  }
 
-    static async getInitialProps(ctx) {
-        //console.log(ctx)
-        return { arg: null }
-    }
+  componentDidMount() {
+    fetch("/api/dbs", {
+      body: JSON.stringify({ dbs: this.databases }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then((r) => r.json())
+      .then((json) => {
+        if (json.error)
+          return this.setState({ error: json.error, loading: true });
+        this.setState({ databases: json.result, loading: false });
+      })
+      .catch((err) => this.setState({ error: err, loading: false }));
+  }
 
-    componentDidMount() {
-        fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: this.databases }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST"
-        }).then(r => r.json())
-            .then(json => {
-                if (json.error)
-                    return this.setState({ error: json.error, loading: true })
-                this.setState({ databases: json.result, loading: false })
-            })
-            .catch(err => this.setState({ error: err, loading: false }))
-    }
+  displayMore() {
+    console.log("display more");
+  }
 
-    displayMore() {
-        console.log("display more")
-    }
+  renderElements(): object {
+    throw new Error("renderElements must be implemented first");
+  }
 
-    renderElements(): object {
-        throw new Error("renderElements must be implemented first")
-    }
+  render() {
+    if (this.state.loading) return <LoadingComponent />;
 
-    render() {
+    if (this.state.error) return this.state.error;
 
-        if (this.state.loading)
-            return <LoadingComponent/>
+    const classes = this.classes;
+    const strings: l10n = this.strings;
+    const elements: any = this.renderElements();
 
-        if (this.state.error)
-            return this.state.error
+    console.log(elements);
 
-        const classes = this.classes;
-        const strings: l10n = this.strings;
-        const elements: any = this.renderElements();
+    return (
+      <div>
+        {/* Head */}
+        <div className={classes.title}>
+          <Typography variant="h3">{strings.getString(this.title)}</Typography>
+        </div>
 
-        console.log(elements);
+        <br />
+        <div style={{ textAlign: "left" }}>
+          {strings.getString("COMMON_ENTRIES").format(elements.length)}
+        </div>
 
-        return <div >
-
-            {/* Head */}
-            <div className={classes.title}>
-                <h1>{strings.getString(this.title)}</h1>
-            </div>
-
-            <br />
-            <div style={{ textAlign: "left" }}>
-                {strings.getString("COMMON_ENTRIES").format(elements.length)}
-            </div>
-
-            {/* Information */}
-            {elements}
-
-        </div>;
-    }
+        {/* Information */}
+        {elements}
+      </div>
+    );
+  }
 }
 
 export default DjAbstractListPage;
