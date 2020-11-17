@@ -155,7 +155,7 @@ const MusicCardListView = ({ music, unit, charts }) => {
   );
 };
 
-const DifficultyBadge = ({ difficulty, level, color, ...rest }) => {
+export const DifficultyBadge = ({ difficulty, level, color, ...rest }) => {
   return (
     <div {...rest}>
       <Typography variant="body2" align="center">
