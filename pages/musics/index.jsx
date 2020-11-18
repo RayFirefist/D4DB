@@ -163,7 +163,8 @@ export const DifficultyBadge = ({ difficulty, level, color, ...rest }) => {
       </Typography>
       <Avatar
         style={{
-          backgroundColor: color || "grey"
+          backgroundColor: color || "grey",
+          cursor: "pointer"
         }}
       >
         {(level * 2) % 2 === 1 ? Math.floor(level) + "+" : level}

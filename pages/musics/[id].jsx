@@ -3,16 +3,25 @@ import { withRouter } from "next/router";
 import AppBase from "../../components/common/base.jsx";
 import l10n from "../../utils/l10n/l10n";
 import timestampToString from "../../utils/time/timeString.js";
-import { Button } from "@material-ui/core";
 import {
+  Box,
   Grid,
   Typography,
   Table,
   TableBody,
   TableCell,
-  TableRow
+  TableRow,
+  Tabs,
+  Tab,
+  Paper,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from "@material-ui/core";
 import { DifficultyBadge } from "./index";
+import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 const consts = require("../../consts.json");
 const languages = new l10n();
 
@@ -28,6 +37,9 @@ class DjMusicEntryPage extends React.Component {
       music: {},
       charts: {},
       unit: {},
+      //chart
+      chartOpen: true,
+      chartDifficulty: 1,
       // page
       illust: 0
     };
@@ -73,7 +85,7 @@ class DjMusicEntryPage extends React.Component {
 
   getIllustUrl() {
     let id = this.state.music.Id.toString().padStart(7, "0");
-    return consts.cdn + "music_jacket/music_jacket_" + id + ".jpg";
+    return getAssetUrl("music_jacket/", `music_jacket_${id}.jpg`);
   }
 
   render() {
@@ -91,154 +103,210 @@ class DjMusicEntryPage extends React.Component {
 
     return (
       <React.Fragment>
-        <Typography variant="h4" align="left" gutterBottom>
-          {music.Name}
-        </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={8}>
-            <Table aria-label="simple table" size="small">
-              <TableBody>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      Name
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">{music.Name}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      Group
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    {music.Unit !== 50 && music.Unit !== 30
-                      ? unit.Name
-                      : music.SpecialUnitName || "-"}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      Category
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">{music.Category._name_}</TableCell>
-                </TableRow>
-                {music.Arranger && (
+        <Box marginBottom="20px">
+          <Typography variant="h4" align="left" gutterBottom>
+            {music.Name}
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={8}>
+              <Table aria-label="simple table" size="small">
+                <TableBody>
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Arranger
+                        Name
                       </Typography>
                     </TableCell>
-                    <TableCell align="right">{music.Arranger}</TableCell>
+                    <TableCell align="right">{music.Name}</TableCell>
                   </TableRow>
-                )}
-                {music.Composer && (
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Composer
+                        Group
                       </Typography>
                     </TableCell>
-                    <TableCell align="right">{music.Composer}</TableCell>
+                    <TableCell align="right">
+                      {music.Unit !== 50 && music.Unit !== 30
+                        ? unit.Name
+                        : music.SpecialUnitName || "-"}
+                    </TableCell>
                   </TableRow>
-                )}
-                {music.Lyrist && (
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Lyricist
+                        Category
                       </Typography>
                     </TableCell>
-                    <TableCell align="right">{music.Lyrist}</TableCell>
+                    <TableCell align="right">{music.Category._name_}</TableCell>
                   </TableRow>
-                )}
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      Release Date
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    {timestampToString(music.StartDate)}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      BPM
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">{music.MusicBpm}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="body1" align="left">
-                      Difficulty
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Grid container spacing={2} justify="flex-end">
-                      <Grid item>
-                        <DifficultyBadge
-                          difficulty="Easy"
-                          color="rgb(43,135,231)"
-                          level={
-                            charts["Easy"]?.OverrideLevel ||
-                            charts["Easy"]?.Level
+                  {music.Arranger && (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        <Typography variant="body1" align="left">
+                          Arranger
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">{music.Arranger}</TableCell>
+                    </TableRow>
+                  )}
+                  {music.Composer && (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        <Typography variant="body1" align="left">
+                          Composer
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">{music.Composer}</TableCell>
+                    </TableRow>
+                  )}
+                  {music.Lyrist && (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        <Typography variant="body1" align="left">
+                          Lyricist
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">{music.Lyrist}</TableCell>
+                    </TableRow>
+                  )}
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      <Typography variant="body1" align="left">
+                        Release Date
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">
+                      {timestampToString(music.StartDate)}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      <Typography variant="body1" align="left">
+                        BPM
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">{music.MusicBpm}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      <Typography variant="body1" align="left">
+                        Difficulty
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Grid container spacing={2} justify="flex-end">
+                        <Grid
+                          item
+                          onClick={() =>
+                            this.setState({
+                              chartOpen: true,
+                              chartDifficulty: 1
+                            })
                           }
-                        />
-                      </Grid>
-                      <Grid item>
-                        <DifficultyBadge
-                          difficulty="Normal"
-                          color="rgb(90,196,76)"
-                          level={
-                            charts["Normal"]?.OverrideLevel ||
-                            charts["Normal"]?.Level
+                        >
+                          <DifficultyBadge
+                            difficulty="Easy"
+                            color="rgb(43,135,231)"
+                            level={
+                              charts["Easy"]?.OverrideLevel ||
+                              charts["Easy"]?.Level
+                            }
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          onClick={() =>
+                            this.setState({
+                              chartOpen: true,
+                              chartDifficulty: 2
+                            })
                           }
-                        />
-                      </Grid>
-                      <Grid item>
-                        <DifficultyBadge
-                          difficulty="Hard"
-                          color="rgb(238,172, 92)"
-                          level={
-                            charts["Hard"]?.OverrideLevel ||
-                            charts["Hard"]?.Level
+                        >
+                          <DifficultyBadge
+                            difficulty="Normal"
+                            color="rgb(90,196,76)"
+                            level={
+                              charts["Normal"]?.OverrideLevel ||
+                              charts["Normal"]?.Level
+                            }
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          onClick={() =>
+                            this.setState({
+                              chartOpen: true,
+                              chartDifficulty: 3
+                            })
                           }
-                        />
-                      </Grid>
-                      <Grid item>
-                        <DifficultyBadge
-                          difficulty="Expert"
-                          color="rgb(239,72, 83)"
-                          level={
-                            charts["Expert"]?.OverrideLevel ||
-                            charts["Expert"]?.Level
+                        >
+                          <DifficultyBadge
+                            difficulty="Hard"
+                            color="rgb(238,172, 92)"
+                            level={
+                              charts["Hard"]?.OverrideLevel ||
+                              charts["Hard"]?.Level
+                            }
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          onClick={() =>
+                            this.setState({
+                              chartOpen: true,
+                              chartDifficulty: 4
+                            })
                           }
-                        />
+                        >
+                          <DifficultyBadge
+                            difficulty="Expert"
+                            color="rgb(239,72, 83)"
+                            level={
+                              charts["Expert"]?.OverrideLevel ||
+                              charts["Expert"]?.Level
+                            }
+                          />
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box display="flex" height="100%" alignItems="center">
+                <img
+                  src={this.getIllustUrl()}
+                  style={{ width: "100%", margin: "auto 0" }}
+                />
+              </Box>
+            </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            style={{
-              backgroundImage: `url(${this.getIllustUrl()})`,
-              height: "500px",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat"
-            }}
-          ></Grid>
+        </Box>
+        <Grid container>
+          <Grid item xs>
+            <Accordion
+              expanded={this.state.chartOpen}
+              onChange={(_, s) => this.setState({ chartOpen: s })}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography variant="h5" align="left">
+                  Charts
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails style={{ flexDirection: "column" }}>
+                <SongChartView
+                  difficulty={this.state.chartDifficulty}
+                  handleChange={(_, c) => this.setState({ chartDifficulty: c })}
+                  music={music}
+                />
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
         </Grid>
       </React.Fragment>
     );
@@ -246,3 +314,23 @@ class DjMusicEntryPage extends React.Component {
 }
 
 export default withRouter(DjMusicEntryPage);
+
+const SongChartView = ({ difficulty, handleChange, music }) => {
+  const id = music.Id.toString().padStart(7, "0");
+  const jacketUrl = getAssetUrl("maps/", `chart_${id}${difficulty}.png`);
+
+  return (
+    <React.Fragment>
+      <Tabs variant="scrollable" value={difficulty} onChange={handleChange}>
+        <Tab label="Easy" value={1} />
+        <Tab label="Normal" value={2} />
+        <Tab label="Hard" value={3} />
+        <Tab label="Expert" value={4} />
+      </Tabs>
+      <Box width="100%" overflow="scroll">
+        <br />
+        <img style={{ maxHeight: "1000px" }} src={jacketUrl} />
+      </Box>
+    </React.Fragment>
+  );
+};
