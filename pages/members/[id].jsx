@@ -2,23 +2,15 @@ import React from "react";
 import { withRouter } from "next/router";
 import l10n from "../../utils/l10n/l10n";
 import {
-  Button,
-  Card,
   Grid,
-  Modal,
-  Paper,
   Typography,
   Table,
   TableBody,
   TableCell,
-  TableRow,
+  TableRow
 } from "@material-ui/core";
-import RowInformation from "../../components/common/rowInfo.jsx";
-import timestampToString from "../../utils/time/timeString.js";
-import CenteredTabs from "../../components/common/tabs.jsx";
-import ImageLoader from "../../components/common/image.jsx";
+import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 
-const consts = require("../../consts.json");
 const strings = new l10n();
 
 class DjMemberEntryPage extends React.Component {
@@ -36,7 +28,7 @@ class DjMemberEntryPage extends React.Component {
       illust: 0,
       tab: 0,
       openModal: false,
-      illustUrl: "",
+      illustUrl: ""
     };
   }
 
@@ -49,12 +41,12 @@ class DjMemberEntryPage extends React.Component {
     fetch("/api/dbs", {
       body: JSON.stringify({ dbs: ["CharacterMaster", "UnitMaster"] }),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      method: "POST",
+      method: "POST"
     })
-      .then((r) => r.json())
-      .then((json) => {
+      .then(r => r.json())
+      .then(json => {
         console.log(json);
         if (json.error)
           return this.setState({ error: json.error, loading: false });
@@ -68,37 +60,33 @@ class DjMemberEntryPage extends React.Component {
 
         this.setState({ character: chara, unit, loading: false });
       })
-      .catch((err) => this.setState({ error: err, loading: false }));
+      .catch(err => this.setState({ error: err, loading: false }));
   }
 
   getIllustUrl(member) {
-    return (
-      consts.cdn +
-      "ondemand/character/character_stand_up_0" +
-      member.Id +
-      ".png"
+    return getAssetUrl(
+      "ondemand/character",
+      `character_stand_up_0${member.Id}.png`
     );
   }
 
   getCharacterProfile(member) {
-    return (
-      consts.cdn +
-      "ondemand/character_profile/character_profile_0" +
-      member.Id +
-      ".jpg"
+    return getAssetUrl(
+      "ondemand/character_profile",
+      `character_profile_0${member.Id}.jpg`
     );
   }
 
   openModal(url) {
     this.setState({
       openModal: true,
-      illustUrl: url,
+      illustUrl: url
     });
   }
 
   closeModal() {
     this.setState({
-      openModal: false,
+      openModal: false
     });
   }
 
@@ -116,7 +104,7 @@ class DjMemberEntryPage extends React.Component {
     return (
       <div>
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={8}>
             <Typography variant="h3" align="left">
               {lang === "jp" ? chara.FullName : chara.FullNameEnglish}
             </Typography>
@@ -151,7 +139,7 @@ class DjMemberEntryPage extends React.Component {
               backgroundImage: `url(${this.getIllustUrl(chara)})`,
               height: "500px",
               backgroundPosition: "center top",
-              backgroundSize: "cover",
+              backgroundSize: "cover"
             }}
           ></Grid>
           <Grid item xs={12}>

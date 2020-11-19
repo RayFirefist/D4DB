@@ -1,12 +1,11 @@
 import React from "react";
-import Drawer from "../../components/common/base.jsx";
 
 import Link from "next/link";
 
-import consts from "../../consts.json";
 import { Card, Grid, Typography } from "@material-ui/core";
 
 import AbstractList from "../../components/common/listPage.tsx";
+import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 
 class DjMembersListPage extends AbstractList {
   constructor(props) {
@@ -17,11 +16,9 @@ class DjMembersListPage extends AbstractList {
   }
 
   getIllustUrl(member) {
-    return (
-      consts.cdn +
-      "ondemand/character/character_stand_up_0" +
-      member.Id +
-      ".png"
+    return getAssetUrl(
+      "ondemand/character",
+      `character_stand_up_0${member.Id}.png`
     );
   }
 
@@ -43,7 +40,7 @@ class DjMembersListPage extends AbstractList {
         id === "50"
           ? Object.entries(members)
               .filter(([_, m]) => m.Unit == id)
-              .map((e) => e[0])
+              .map(e => e[0])
           : unit.InitDeckCharacterIds.sort();
 
       out.push(
@@ -55,7 +52,7 @@ class DjMembersListPage extends AbstractList {
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={3}>
-              {unitMembers.map((charaId) => {
+              {unitMembers.map(charaId => {
                 const member = members[charaId];
                 return (
                   <Grid key={"chara" + charaId} xs={6} md={3} lg={3} item>
@@ -73,7 +70,7 @@ class DjMembersListPage extends AbstractList {
                                 height: "500px",
                                 backgroundPosition: "center top",
                                 backgroundSize: "cover",
-                                backgroundColor: member.ColorCode,
+                                backgroundColor: member.ColorCode
                               }}
                             ></Grid>
                           )}
