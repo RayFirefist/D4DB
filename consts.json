@@ -1,6 +1,6 @@
 {
     "name": "D4DB (仮)",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "cdn": "http://localhost:5000/",
     "l10n_path": "/l10n/",
     "beatmaps_path": "/maps/",
