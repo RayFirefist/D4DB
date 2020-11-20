@@ -1,5 +1,5 @@
 import React from 'react';
-import Link  from 'next/link';
+import Link from 'next/link';
 
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -21,10 +21,10 @@ const styles = theme => ({
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-      },
-      nested: {
+    },
+    nested: {
         paddingLeft: theme.spacing(4),
-      },
+    },
 });
 
 class DrawerContents extends React.Component {
@@ -56,6 +56,11 @@ class DrawerContents extends React.Component {
         return <div>
             <div className={classes.toolbar} />
             <Divider />
+            <Link href="/">
+                <ListItem button>
+                    <ListItemText primary={strings.getString("HOME_TITLE")} />
+                </ListItem>
+            </Link>
             <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
