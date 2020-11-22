@@ -6,6 +6,7 @@ import RowInformation from '../../components/common/rowInfo.jsx';
 import timestampToString from '../../utils/time/timeString.js';
 import CenteredTabs from '../../components/common/tabs.jsx';
 import ImageLoader from '../../components/common/image.jsx';
+import D4DJCard from '../../components/cards/card';
 
 const consts = require('../../consts.json')
 const strings = new l10n();
@@ -112,7 +113,7 @@ class DjCardsEntryPage extends React.Component {
             <div align="left">
                 <h1 style={{ fontSize: "34px" }}>{card.CardName} - {charaName}</h1>
             </div>
-            <img src={this.getIllustUrl()} style={{ width: "100%" }}></img>
+            <D4DJCard cardIllust={this.getIllustUrl()} rarity={card.Rarity}/>
             <br></br>
             <br></br>
             <div hidden={card.Rarity < 3}>
@@ -123,7 +124,7 @@ class DjCardsEntryPage extends React.Component {
 
             {/* Information */}
             <div align="left">
-                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<ImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{width: "100%", maxWidth: "50px"}}/></div>} />
+                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<ImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{ width: "100%", maxWidth: "50px" }} /></div>} />
                 <RowInformation left={strings.getString("CARD_NAME")} right={card.CardName} />
                 <RowInformation left={strings.getString("CARD_RARITY")} right={card.Rarity} />
                 <RowInformation left={strings.getString("CARD_ATTRIBUTE")} right={strings.getString("COMMON_ATTRIBUTE_{0}".format(card.Attribute))} />
@@ -146,7 +147,7 @@ class DjCardsEntryPage extends React.Component {
             {/* Cards Assets */}
             <div align="left">
                 <h1>{strings.getString("CARD_ILLUST_TITLE")}</h1>
-                <CenteredTabs labels={["CARD_ILLUST_ILLUSTS", "CARD_ILLUST_ICONS", "CARD_ILLUST_TRANSPARENT", "CARD_ILLUST_CHIBI"]} callbackChange={(e) => { this.setState({ tab: e }) }} />
+                <CenteredTabs labels={["CARD_ILLUST_ILLUSTS", "CARD_ILLUST_TRANSPARENT", "CARD_ILLUST_ICONS", "CARD_ILLUST_CHIBI"]} callbackChange={(e) => { this.setState({ tab: e }) }} />
             </div>
             <div hidden={this.state.tab !== 0} align="center">
                 <br />

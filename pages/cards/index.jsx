@@ -6,6 +6,7 @@ import { Card, Grid } from '@material-ui/core';
 
 import consts from '../../consts.json';
 import AbstractList from '../../components/common/listPage.tsx';
+import D4DJCardIcon from '../../components/cards/icon.jsx'
 //import l10n from '../../utils/l10n/l10n';
 
 //const strings = new l10n();
@@ -26,7 +27,6 @@ class DjCardsListPage extends AbstractList {
         console.log(this.state);
         let cards = this.state.databases.CardMaster;
         let charas = this.state.databases.CharacterMaster;
-        console.log(cards, charas);
 
         let out = []
 
@@ -41,7 +41,8 @@ class DjCardsListPage extends AbstractList {
                     <Grid container>
                         <Grid item xs={1}></Grid>
                         <Grid item>
-                            <img src={this.getIllustUrl(card)} alt={card.Id} className={this.classes.cardIcon} />
+                            {/* <img src={this.getIllustUrl(card)} alt={card.Id} className={this.classes.cardIcon} /> */}
+                            <D4DJCardIcon illustUrl={this.getIllustUrl(card)} rarity={card.Rarity} typeId={card.Attribute}/>
                         </Grid>
                         <Grid item xs={1}></Grid>
                         <Grid item>

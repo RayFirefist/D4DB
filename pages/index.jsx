@@ -44,7 +44,7 @@ class HomePage extends React.Component {
 
                 for (let gachaId in json.GachaMaster) {
                     let _gacha = json.GachaMaster[gachaId];
-                    if (_gacha.UNK === true) {
+                    if (_gacha.IsTutorial === true) {
                         continue;
                     }
                     if (forbiddenGachaId.includes(_gacha.Id)) {
