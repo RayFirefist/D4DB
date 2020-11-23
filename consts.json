@@ -1,7 +1,7 @@
 {
     "name": "D4DB (仮)",
     "version": "0.0.4",
-    "cdn": "http://localhost:5000/",
+    "cdn": "https://api.gurumiku.makoo.eu/assets/",
     "l10n_path": "/l10n/",
     "beatmaps_path": "/maps/",
     "debug_api": true
