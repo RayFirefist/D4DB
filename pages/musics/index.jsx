@@ -13,6 +13,7 @@ import {
 
 import AbstractList from "../../components/common/listPage.tsx";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
+import SafeImageLoader from "../../components/common/safeImage";
 //import l10n from '../../utils/l10n/l10n';
 
 //const strings = new l10n();
@@ -83,7 +84,7 @@ const MusicCardListView = ({ music, unit, charts }) => {
               maxWidth="150px"
               marginRight="10px"
             >
-              <img
+              <SafeImageLoader
                 src={getIllustUrl(music)}
                 style={{ width: "100%", height: "auto" }}
                 alt={music.Id}

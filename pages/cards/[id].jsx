@@ -7,6 +7,7 @@ import timestampToString from '../../utils/time/timeString.js';
 import CenteredTabs from '../../components/common/tabs.jsx';
 import ImageLoader from '../../components/common/image.jsx';
 import D4DJCard from '../../components/cards/card';
+import SafeImageLoader from '../../components/common/safeImage';
 
 const consts = require('../../consts.json')
 const strings = new l10n();
@@ -124,7 +125,7 @@ class DjCardsEntryPage extends React.Component {
 
             {/* Information */}
             <div align="left">
-                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<ImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{ width: "100%", maxWidth: "50px" }} /></div>} />
+                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<SafeImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{ width: "100%", maxWidth: "50px" }} /></div>} />
                 <RowInformation left={strings.getString("CARD_NAME")} right={card.CardName} />
                 <RowInformation left={strings.getString("CARD_RARITY")} right={card.Rarity} />
                 <RowInformation left={strings.getString("CARD_ATTRIBUTE")} right={strings.getString("COMMON_ATTRIBUTE_{0}".format(card.Attribute))} />
@@ -152,13 +153,13 @@ class DjCardsEntryPage extends React.Component {
             <div hidden={this.state.tab !== 0} align="center">
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
 
@@ -166,26 +167,26 @@ class DjCardsEntryPage extends React.Component {
             <div hidden={this.state.tab !== 1} align="center">
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_0.png")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_0.png"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_0.png"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_1.png")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_1.png"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_1.png"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
             <div hidden={this.state.tab !== 2} align="center">
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
                 <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg")}>
-                    <ImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
@@ -193,32 +194,32 @@ class DjCardsEntryPage extends React.Component {
                 <Grid container>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png")}>
-                            <ImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png"} style={{ maxWidth: "90%" }} />
+                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                 </Grid>
@@ -232,7 +233,7 @@ class DjCardsEntryPage extends React.Component {
                     <Paper>
                         <br />
                         <h2>{strings.getString("CARDS_ILLUST_VIEW")}</h2>
-                        <ImageLoader src={this.state.illustUrl} style={{ width: "100%", padding: "30px" }} />
+                        <SafeImageLoader src={this.state.illustUrl} style={{ width: "100%", padding: "30px" }} />
                         <Button onClick={() => window.open(this.state.illustUrl)}>{strings.getString("BUTTON_DOWNLOAD")}</Button>
                         <br /><br />
                         <Button onClick={() => this.closeModal()}>{strings.getString("BUTTON_CLOSE")}</Button>

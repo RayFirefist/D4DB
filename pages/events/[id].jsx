@@ -12,6 +12,7 @@ import {
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import RowInformation from "../../components/common/rowInfo";
 import timestampToString from "../../utils/time/timeString";
+import SafeImageLoader from "../../components/common/safeImage";
 
 const strings = new l10n();
 
@@ -109,13 +110,13 @@ class DjEventEntryPage extends React.Component {
             <div>
                 <div align="left"><h1>{event.Name}</h1></div>
                 <div style={{ position: "relative" }}>
-                    <img src={this.getCharaUrl()} style={{
+                    <SafeImageLoader src={this.getCharaUrl()} style={{
                         width: "100%",
                         maxWidth: "550px",
                         background: `url(${this.getBgUrl()})`,
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                    }}></img>
+                    }}/>
                 </div>
                 <br />
                 <br />

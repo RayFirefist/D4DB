@@ -13,6 +13,9 @@ import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import RowInformation from "../../components/common/rowInfo";
 import timestampToString from "../../utils/time/timeString";
 import ImageLoader from "../../components/common/image";
+import SafeImageLoader from "../../components/common/safeImage";
+import D4DJCardIcon from "../../components/cards/icon";
+import consts from '../../consts.json';
 
 const strings = new l10n();
 
@@ -43,7 +46,7 @@ class DjGachaEntryPage extends React.Component {
 
     componentDidMount() {
         fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: ["GachaMaster", "CardMaster", "CharacterMaster", "UnitMaster"] }),
+            body: JSON.stringify({ dbs: ["GachaMaster", "GachaTableMaster", "CardMaster", "CharacterMaster", "UnitMaster"] }),
             headers: {
                 "Content-Type": "application/json"
             },
@@ -89,6 +92,15 @@ class DjGachaEntryPage extends React.Component {
         });
     }
 
+    getIllustUrl(card, illustMode = 0) {
+        return consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_" + illustMode + ".jpg"
+    }
+
+    getIllustUrl2() {
+        let id = this.state.gacha.Id.toString()
+        return consts.cdn + "ondemand/gacha/top/banner/" + id.padStart(4, "0") + ".png"
+    }
+
     render() {
         if (this.state.loading) return "Loading...";
 
@@ -102,7 +114,7 @@ class DjGachaEntryPage extends React.Component {
         return (
             <div>
                 <div align="left"><h1>{gacha.Name}</h1></div>
-                <ImageLoader src={this.getBannerUrl()}/>
+                <SafeImageLoader src={this.getBannerUrl()} alternativeUrl={this.getIllustUrl2()} />
                 <br />
                 <br />
                 <br />
@@ -116,6 +128,19 @@ class DjGachaEntryPage extends React.Component {
                     {/* Gacha Rates */}
 
                     {/* Gacha Cards (w/ featured) */}
+                    <h2>{strings.getString("GACHA_CARDS_TITLE")}</h2>
+                    <h3>{strings.getString("GACHA_PICKUP_CARDS_TITLE")}</h3>
+                    <Grid container>
+                        {
+                            this.state.gacha.PickUpCards.map(cardId =>
+                                <D4DJCardIcon
+                                    illustUrl={this.getIllustUrl({ Id: cardId })}
+                                    rarity={3}
+                                    typeId={1}
+                                />
+                            )
+                        }
+                    </Grid>
 
                     {/* Assets */}
                 </div>

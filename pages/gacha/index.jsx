@@ -6,6 +6,7 @@ import { Card, Grid } from '@material-ui/core';
 
 import consts from '../../consts.json';
 import AbstractList from '../../components/common/listPage.tsx';
+import SafeImageLoader from '../../components/common/safeImage';
 //import l10n from '../../utils/l10n/l10n';
 
 //const strings = new l10n();
@@ -20,6 +21,11 @@ class DjGachaListPage extends AbstractList {
     getIllustUrl(event) {
         let id = event.Id.toString()
         return consts.cdn + "ondemand/banner/banner_gacha_" + id.padStart(4, "0") + ".png"
+    }
+
+    getIllustUrl2(event) {
+        let id = event.Id.toString()
+        return consts.cdn + "ondemand/gacha/top/banner/" + id.padStart(4, "0") + ".png"
     }
 
     renderElements() {
@@ -37,12 +43,20 @@ class DjGachaListPage extends AbstractList {
             if (gacha.CardName === "※危険トランプ追加用")
                 continue;
 
+            if (gacha.IsTutorial)
+                continue;
+
             out.push(<Link href={"/gacha/" + gacha.Id}>
                 <Card className={this.classes.card}>
                     <Grid container>
                         <Grid item xs={1}></Grid>
                         <Grid item>
-                            <img src={this.getIllustUrl(gacha)} alt={gacha.Id} className={this.classes.bannerIcon} />
+                            <SafeImageLoader 
+                                src={this.getIllustUrl(gacha)} 
+                                alt={gacha.Id} 
+                                className={this.classes.bannerIcon} 
+                                alternativeUrl={this.getIllustUrl2(gacha)}
+                            />
                         </Grid>
                         <Grid item xs={1}></Grid>
                         <Grid item>

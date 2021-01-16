@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SafeImageLoader from '../common/safeImage';
 
 import constants from './../../consts.json';
 
@@ -148,13 +149,13 @@ class D4DJCardIcon extends Component {
         }
 
         return <div style={classes.iconContainer}>
-            <img src={this.illustUrl} style={classes.illust} alt={"illust"} />
+            <SafeImageLoader src={this.illustUrl} style={classes.illust} alt={"illust"} />
             <div style={this.frameClass} />
             <div>
                 {rarity}
             </div>
             <div>
-                <img src={"/assets/chara/type/icon_" + type + ".png"} style={classes.attribute} alt="" />
+                <SafeImageLoader src={"/assets/chara/type/icon_" + type + ".png"} style={classes.attribute} alt="" />
             </div>
         </div>
     }
