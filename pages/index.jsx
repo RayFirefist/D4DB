@@ -14,7 +14,8 @@ class HomePage extends React.Component {
     state = {
         event: [],
         gacha: [],
-        news: []
+        news: [],
+        loading: true
     };
 
     componentDidMount() {
@@ -56,13 +57,16 @@ class HomePage extends React.Component {
                     }
                 }
 
-                this.setState({ event: event, gacha: gacha });
+                this.setState({ event: event, gacha: gacha, loading: false });
             });
     }
 
     getEvents() {
-        if (this.state.event.length == 0) 
-            return <CircularProgress/>
+        if (this.state.event.length == 0 && this.state.loading)
+            return <CircularProgress />;
+
+        if (this.state.event.length == 0)
+            return <h3>{strings.getString("HOME_NO_EVENTS")}</h3>;
 
         return this.state.event.map(event => (
             <Card style={{ marginBottom: "20px" }}>
@@ -79,17 +83,22 @@ class HomePage extends React.Component {
                         />
                         <br />
                         <h2>{event.Name}</h2>
-                        <>{event.Type._name_} - <Countdown end={event.ReceptionCloseDate}/></>
-                        
+                        <>
+                            {event.Type._name_} -{" "}
+                            <Countdown end={event.ReceptionCloseDate} />
+                        </>
                     </div>
                 </a>
             </Card>
-        ))
+        ));
     }
 
     getGachas() {
-        if (this.state.gacha.length == 0) 
-            return <CircularProgress/>
+        if (this.state.gacha.length == 0 && this.state.loading)
+            return <CircularProgress />;
+
+        if (this.state.gacha.length == 0)
+            return <h3>{strings.getString("HOME_NO_GACHAS")}</h3>;
 
         return this.state.gacha.map(gacha => (
             <Card style={{ marginBottom: "20px" }}>
@@ -99,10 +108,7 @@ class HomePage extends React.Component {
                             src={
                                 consts.cdn +
                                 "ondemand/banner/banner_gacha_{0}.png".format(
-                                    gacha.Id.toString().padStart(
-                                        4,
-                                        "0"
-                                    )
+                                    gacha.Id.toString().padStart(4, "0")
                                 )
                             }
                             style={{ width: "100%" }}
@@ -113,7 +119,7 @@ class HomePage extends React.Component {
                     </div>
                 </a>
             </Card>
-        ))
+        ));
     }
 
     render() {
@@ -124,9 +130,13 @@ class HomePage extends React.Component {
                     <h1>{strings.getString("HOME_TITLE")}</h1>
                     <br></br>
                 </div>
-                <Alert severity={"warning"} style={{textAlign: "left"}}>{strings.getString("COMMON_OPEN_ALPHA_WARNING")}</Alert>
-                <br/>
-                <Alert severity={"warning"} style={{textAlign: "left"}}>{strings.getString("COMMON_OPEN_ALPHA2_WARNING")}</Alert>
+                <Alert severity={"warning"} style={{ textAlign: "left" }}>
+                    {strings.getString("COMMON_OPEN_ALPHA_WARNING")}
+                </Alert>
+                <br />
+                <Alert severity={"warning"} style={{ textAlign: "left" }}>
+                    {strings.getString("COMMON_OPEN_ALPHA2_WARNING")}
+                </Alert>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <h2>{strings.getString("HOME_ONGOING_EVENT")}</h2>
