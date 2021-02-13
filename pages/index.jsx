@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card } from "@material-ui/core";
+import { Grid, Card, CircularProgress } from "@material-ui/core";
 //import styles from '../styles/Home.module.css'
 import consts from "../consts.json";
 import l10n from "../utils/l10n/l10n";
@@ -60,6 +60,62 @@ class HomePage extends React.Component {
             });
     }
 
+    getEvents() {
+        if (this.state.event.length == 0) 
+            return <CircularProgress/>
+
+        return this.state.event.map(event => (
+            <Card style={{ marginBottom: "20px" }}>
+                <a href={"/events/" + event.Id}>
+                    <div style={{ padding: "20px" }}>
+                        <ImageLoader
+                            src={
+                                consts.cdn +
+                                "ondemand/event/event_{0}/banner_event.png".format(
+                                    event.Id
+                                )
+                            }
+                            style={{ width: "100%" }}
+                        />
+                        <br />
+                        <h2>{event.Name}</h2>
+                        <>{event.Type._name_} - <Countdown end={event.ReceptionCloseDate}/></>
+                        
+                    </div>
+                </a>
+            </Card>
+        ))
+    }
+
+    getGachas() {
+        if (this.state.gacha.length == 0) 
+            return <CircularProgress/>
+
+        return this.state.gacha.map(gacha => (
+            <Card style={{ marginBottom: "20px" }}>
+                <a href={"/gacha/" + gacha.Id}>
+                    <div style={{ padding: "20px" }}>
+                        <ImageLoader
+                            src={
+                                consts.cdn +
+                                "ondemand/banner/banner_gacha_{0}.png".format(
+                                    gacha.Id.toString().padStart(
+                                        4,
+                                        "0"
+                                    )
+                                )
+                            }
+                            style={{ width: "100%" }}
+                        />
+                        <br />
+                        <h2>{gacha.Name}</h2>
+                        <Countdown end={gacha.EndDate} />
+                    </div>
+                </a>
+            </Card>
+        ))
+    }
+
     render() {
         //<Drawer/>
         return (
@@ -74,53 +130,11 @@ class HomePage extends React.Component {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <h2>{strings.getString("HOME_ONGOING_EVENT")}</h2>
-                        {this.state.event.map(event => (
-                            <Card style={{ marginBottom: "20px" }}>
-                                <a href={"/events/" + event.Id}>
-                                    <div style={{ padding: "20px" }}>
-                                        <ImageLoader
-                                            src={
-                                                consts.cdn +
-                                                "ondemand/event/event_{0}/banner_event.png".format(
-                                                    event.Id
-                                                )
-                                            }
-                                            style={{ width: "100%" }}
-                                        />
-                                        <br />
-                                        <h2>{event.Name}</h2>
-                                        <>{event.Type._name_} - <Countdown end={event.ReceptionCloseDate}/></>
-                                        
-                                    </div>
-                                </a>
-                            </Card>
-                        ))}
+                        {this.getEvents()}
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <h2>{strings.getString("HOME_ONGOING_GACHA")}</h2>
-                        {this.state.gacha.map(gacha => (
-                            <Card style={{ marginBottom: "20px" }}>
-                                <a href={"/gacha/" + gacha.Id}>
-                                    <div style={{ padding: "20px" }}>
-                                        <ImageLoader
-                                            src={
-                                                consts.cdn +
-                                                "ondemand/banner/banner_gacha_{0}.png".format(
-                                                    gacha.Id.toString().padStart(
-                                                        4,
-                                                        "0"
-                                                    )
-                                                )
-                                            }
-                                            style={{ width: "100%" }}
-                                        />
-                                        <br />
-                                        <h2>{gacha.Name}</h2>
-                                        <Countdown end={gacha.EndDate} />
-                                    </div>
-                                </a>
-                            </Card>
-                        ))}
+                        {this.getGachas()}
                     </Grid>
                     <Grid item xs={6} hidden={true}>
                         <h2>{strings.getString("HOME_NEWS")}</h2>
