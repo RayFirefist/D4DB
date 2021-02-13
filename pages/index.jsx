@@ -119,11 +119,11 @@ class HomePage extends React.Component {
                             </Card>
                         ))}
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} hidden={true}>
                         <h2>{strings.getString("HOME_NEWS")}</h2>
                         <Card>TODO</Card>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} hidden={true}>
                         <h2>{strings.getString("HOME_OFFICIAL_TWITTER")}</h2>
                         <Card>TODO</Card>
                     </Grid>
