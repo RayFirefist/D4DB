@@ -114,7 +114,7 @@ class DjGachaEntryPage extends React.Component {
         return (
             <div>
                 <div align="left"><h1>{gacha.Name}</h1></div>
-                <SafeImageLoader src={this.getBannerUrl()} alternativeUrl={this.getIllustUrl2()} />
+                <SafeImageLoader src={this.getBannerUrl()} alternativeUrl={this.getIllustUrl2()} style={{width: "100%"}} />
                 <br />
                 <br />
                 <br />

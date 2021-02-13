@@ -28,7 +28,6 @@ class SafeImageLoader extends Component {
         }
         this.className = props.className
         this.downloadEnabled = true
-        console.log(props.src)
     }
 
     downloadAndLoadImage() {
