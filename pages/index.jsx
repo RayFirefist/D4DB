@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid, Card } from "@material-ui/core";
 //import styles from '../styles/Home.module.css'
-
 import consts from "../consts.json";
 import l10n from "../utils/l10n/l10n";
 import ImageLoader from "../components/common/image";
 import Countdown from "../components/common/countdown";
+import { Alert } from "@material-ui/lab";
 
 const strings = new l10n();
 const forbiddenGachaId = [4, 5, 6];
@@ -68,8 +68,11 @@ class HomePage extends React.Component {
                     <h1>{strings.getString("HOME_TITLE")}</h1>
                     <br></br>
                 </div>
+                <Alert severity={"warning"} style={{textAlign: "left"}}>{strings.getString("COMMON_OPEN_ALPHA_WARNING")}</Alert>
+                <br/>
+                <Alert severity={"warning"} style={{textAlign: "left"}}>{strings.getString("COMMON_OPEN_ALPHA2_WARNING")}</Alert>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                         <h2>{strings.getString("HOME_ONGOING_EVENT")}</h2>
                         {this.state.event.map(event => (
                             <Card style={{ marginBottom: "20px" }}>
@@ -93,7 +96,7 @@ class HomePage extends React.Component {
                             </Card>
                         ))}
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                         <h2>{strings.getString("HOME_ONGOING_GACHA")}</h2>
                         {this.state.gacha.map(gacha => (
                             <Card style={{ marginBottom: "20px" }}>

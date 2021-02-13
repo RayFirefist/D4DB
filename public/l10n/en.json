@@ -16,6 +16,8 @@
     "COMMON_ATTRIBUTE_5": "Elegant",
     "COMMON_COUNTDOWN": "Remaining {0}d {1}h {2}m {3}s",
     "COMMON_COUNTDOWN_END": "Ended",
+    "COMMON_OPEN_ALPHA_WARNING": "This website is now under open alpha. Expect to having many incomplete features and bugs.",
+    "COMMON_OPEN_ALPHA2_WARNING": "Server is under alpha staging. Expect to have delayed updates and please report to the developers (RayFirefist#4649 on Discord or on GitHub repository) any bug/error",
     "BUTTON_CHANGE_ARTWORK": "Change Artwork",
     "BUTTON_DOWNLOAD": "Download",
     "BUTTON_CLOSE": "Close",
