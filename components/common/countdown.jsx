@@ -43,9 +43,9 @@ class Countdown extends React.Component {
             clearInterval(this.state.timeout);
         }
 
-        return <div>
+        return <>
             {str}
-        </div>
+        </>
     }
 }
 
