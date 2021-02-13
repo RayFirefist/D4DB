@@ -99,7 +99,7 @@ class DrawerContents extends React.Component {
                             </ListItem>
                         </Link>
                         <Link href="/live2d">
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} disabled={true}>
                                 <ListItemText primary={strings.getString("LIVE2D_TITLE")} />
                             </ListItem>
                         </Link>
@@ -112,12 +112,12 @@ class DrawerContents extends React.Component {
                 <Collapse in={this.state.openTools} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <Link href="/settings">
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} disabled={true}>
                                 <ListItemText primary={strings.getString("SETTINGS_TITLE")} />
                             </ListItem>
                         </Link>
                         <Link href="/credits">
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} disabled={true}>
                                 <ListItemText primary={strings.getString("CREDITS_TITLE")} />
                             </ListItem>
                         </Link>
