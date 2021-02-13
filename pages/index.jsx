@@ -73,7 +73,7 @@ class HomePage extends React.Component {
                         {this.state.event.map(event => <a href={"/events/" + event.Id}>
                             <div style={{ padding: "20px" }}>
                                 <ImageLoader
-                                    src={consts.cdn + "ondemand/banner/banner_event_{0}.png".format(event.Id.toString().padStart(4, "0"))}
+                                    src={consts.cdn + "ondemand/event/event_{0}/banner_event.png".format(event.Id)}
                                     style={{ width: "100%" }}
                                 />
                                 <br />
