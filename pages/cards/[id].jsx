@@ -228,13 +228,14 @@ class DjCardsEntryPage extends React.Component {
                 open={this.state.openModal}
                 onClose={() => this.closeModal()}
                 //style={{ width: "100%", maxWidth: "500px", display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: "center" }}
-                style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+                style={{display:'flex',alignItems:'center',justifyContent:'center', width: "100%"}}
             >
                 <div align="center">
                     <Paper>
                         <br />
                         <h2>{strings.getString("CARDS_ILLUST_VIEW")}</h2>
-                        <SafeImageLoader src={this.state.illustUrl} style={{ width: "100%", padding: "30px" }} />
+                        <SafeImageLoader src={this.state.illustUrl} style={{ width: "100%", maxWidth: "700px", padding: "30px" }} />
+                        <br/>
                         <Button onClick={() => window.open(this.state.illustUrl)}>{strings.getString("BUTTON_DOWNLOAD")}</Button>
                         <br /><br />
                         <Button onClick={() => this.closeModal()}>{strings.getString("BUTTON_CLOSE")}</Button>
