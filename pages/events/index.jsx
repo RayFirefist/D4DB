@@ -43,17 +43,17 @@ class DjEventsListPage extends AbstractList {
                 <Link href={"/events/" + event.Id}>
                     <Card className={this.classes.card}>
                         <Grid container>
-                            <Grid item xs={1}></Grid>
-                            <Grid item>
+                            <Grid item xs={0} sm={1}></Grid>
+                            <Grid item xs={12} sm={5}>
                                 <SafeImageLoader
                                     src={this.getIllustUrl(event)}
                                     alt={event.Id}
                                     className={this.classes.bannerIcon}
                                 />
                             </Grid>
-                            <Grid item xs={1}></Grid>
-                            <Grid item>
-                                <div style={{ textAlign: "left" }}>
+                            <Grid item xs={0} sm={1}></Grid>
+                            <Grid item xs={12} sm={5}>
+                                <div style={{ textAlign: "left", paddingTop: "10px" }}>
                                     <b>{event.Name}</b>
                                     <p>{event.Type._name_}</p>
                                 </div>

@@ -45,7 +45,7 @@ class DjCardsListPage extends AbstractList {
                             <D4DJCardIcon illustUrl={this.getIllustUrl(card)} rarity={card.Rarity} typeId={card.Attribute}/>
                         </Grid>
                         <Grid item xs={1}></Grid>
-                        <Grid item>
+                        <Grid item xs={4} sm={6} md={8}>
                             <div style={{textAlign: "left"}}>
                                 <b>{this.isJp ? charas[card.Character].FullName : charas[card.Character].FullNameEnglish}</b>
                                 <p>{card.CardName}</p>

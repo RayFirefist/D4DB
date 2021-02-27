@@ -49,8 +49,8 @@ class DjGachaListPage extends AbstractList {
             out.push(<Link href={"/gacha/" + gacha.Id}>
                 <Card className={this.classes.card}>
                     <Grid container>
-                        <Grid item xs={1}></Grid>
-                        <Grid item>
+                        <Grid item xs={0} sm={1}></Grid>
+                        <Grid item xs={12} sm={5}>
                             <SafeImageLoader 
                                 src={this.getIllustUrl(gacha)} 
                                 alt={gacha.Id} 
@@ -58,8 +58,8 @@ class DjGachaListPage extends AbstractList {
                                 alternativeUrl={this.getIllustUrl2(gacha)}
                             />
                         </Grid>
-                        <Grid item xs={1}></Grid>
-                        <Grid item>
+                        <Grid item xs={0} sm={1}></Grid>
+                        <Grid item xs={12} sm={5}>
                             <div style={{ textAlign: "left" }}>
                                 <b>{gacha.Name}</b>
                                 
