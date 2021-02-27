@@ -16,6 +16,12 @@ class DjEventsListPage extends AbstractList {
         super(props);
         this.databases = ["EventMaster"];
         this.title = "EVENTS_TITLE";
+        this.sortDefaultKey = "Id";
+        this.sortAvailableKeys = ['Id', 'StartDate', 'EndDate']
+        this.availableFilters = {
+            "Type": ["Bingo", "Medley", "Poker", "Raid"],
+            "IsD4FesStory": [true, false]
+        }
     }
 
     getIllustUrl(event) {

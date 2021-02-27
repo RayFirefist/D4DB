@@ -16,6 +16,12 @@ class DjGachaListPage extends AbstractList {
         super(props)
         this.databases = ['GachaMaster']
         this.title = "GACHA_TITLE";
+        this.sortDefaultKey = "StartDate";
+        this.sortAvailableKeys = ['Id', 'StartDate', 'EndDate']
+        this.availableFilters = {
+            "Type": ["Event", "Birthday", "Normal", "Revival", "Tutorial", "Special"],
+            "IsTutorial": [true, false]
+        }
     }
 
     getIllustUrl(event) {
@@ -29,22 +35,28 @@ class DjGachaListPage extends AbstractList {
     }
 
     renderElements() {
-        console.log("rendering")
-        console.log(this.state);
         let gachas = this.state.databases.GachaMaster;
         //let charas = this.state.databases.CharacterMaster;
         console.log(gachas);
 
         let out = []
 
-        for (let gacha in gachas) {
+        let _gachas = Object.keys(gachas).sort((a, b) => {
+            return gachas[a][this.state.sortBy ?? this.sortDefaultKey] > gachas[b][this.state.sortBy ?? this.sortDefaultKey];
+        })
+
+        if (this.state.orderBy == "desc") {
+            _gachas = _gachas.reverse()
+        }
+
+        _gachas.forEach(gacha => {
             gacha = gachas[gacha]
 
             if (gacha.CardName === "※危険トランプ追加用")
-                continue;
+                return;
 
             if (gacha.IsTutorial)
-                continue;
+                return;
 
             out.push(<Link href={"/gacha/" + gacha.Id}>
                 <Card className={this.classes.card}>
@@ -68,7 +80,7 @@ class DjGachaListPage extends AbstractList {
                     </Grid>
                 </Card>
             </Link>)
-        }
+        })
 
         return out
     }

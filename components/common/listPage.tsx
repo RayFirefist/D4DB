@@ -23,6 +23,10 @@ abstract class DjAbstractListPage extends React.Component {
     databases: {},
     // ui
     displayedAmounts: 10,
+    // sort/filter
+    orderBy: "desc",
+    sortBy: null,
+    filters: {},
   };
 
   constructor(props) {
@@ -61,6 +65,24 @@ abstract class DjAbstractListPage extends React.Component {
 
   renderElements(): object {
     throw new Error("renderElements must be implemented first");
+  }
+
+  applyFilter(key, value) {
+    let filters = this.state.filters;
+    if (filters[key] !== undefined) {
+      if (filters[key].includes(value)) {
+        // REMOVE
+      }
+      else {
+        // APPEND
+        filters[key].push(value)
+      }
+    }
+    else {
+      // CREATE
+      filters[key] = [value]
+    }
+    this.setState({filters: filters});
   }
 
   render() {

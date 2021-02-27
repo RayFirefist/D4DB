@@ -16,6 +16,13 @@ class DjCardsListPage extends AbstractList {
         super(props)
         this.databases = ['CardMaster', 'CharacterMaster']
         this.title = "CARDS_TITLE";
+        this.sortDefaultKey = "StartDate";
+        this.sortAvailableKeys = ['Id', 'StartDate', 'Rarity', "Character"]
+        this.availableFilters = {
+            "Rarity": [1, 2, 3, 4],
+            "Attribute": [1, 2, 3, 4, 5],
+            "Character": [11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34, 41, 42, 43, 44, 51, 52, 53, 54, 61, 62, 63, 64]
+        }
     }
 
     getIllustUrl(card, illustMode = 0) {
@@ -23,11 +30,9 @@ class DjCardsListPage extends AbstractList {
     }
 
     renderElements() {
-        console.log("rendering")
-        console.log(this.state);
         let cards = this.state.databases.CardMaster;
         let charas = this.state.databases.CharacterMaster;
-
+        
         let out = []
 
         for (let card in cards) {
