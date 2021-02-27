@@ -227,7 +227,8 @@ class DjCardsEntryPage extends React.Component {
             <Modal
                 open={this.state.openModal}
                 onClose={() => this.closeModal()}
-                style={{ width: "100%", maxWidth: "500px", display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: "center" }}
+                //style={{ width: "100%", maxWidth: "500px", display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: "center" }}
+                style={{display:'flex',alignItems:'center',justifyContent:'center'}}
             >
                 <div align="center">
                     <Paper>
