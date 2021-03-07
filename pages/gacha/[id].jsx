@@ -125,12 +125,7 @@ class DjGachaEntryPage extends React.Component {
     }
 
     getIllustUrl3(_id) {
-        return (
-            consts.cdn +
-            "ondemand/gacha/top/live2d_bg/" +
-            _id +
-            ".jpg"
-        );
+        return consts.cdn + "ondemand/gacha/top/live2d_bg/" + _id + ".jpg";
     }
 
     render() {
@@ -210,15 +205,19 @@ class DjGachaEntryPage extends React.Component {
                         style={{ width: "100%" }}
                     />
 
-                    <h3>{strings.getString("GACHA_LIVE2D_BG_ASSETS_TITLE")}</h3>
-                    {this.state.gacha.Live2dBg.map(file => {
-                        return (
-                            <SafeImageLoader
-                                src={this.getIllustUrl3(file)}
-                                style={{ width: "100%" }}
-                            />
-                        );
-                    })}
+                    <div hidden={this.state.gacha.Live2dBg === undefined}>
+                        <h3>
+                            {strings.getString("GACHA_LIVE2D_BG_ASSETS_TITLE")}
+                        </h3>
+                        {(this.state.gacha.Live2dBg ?? []).map(file => {
+                            return (
+                                <SafeImageLoader
+                                    src={this.getIllustUrl3(file)}
+                                    style={{ width: "100%" }}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         );
