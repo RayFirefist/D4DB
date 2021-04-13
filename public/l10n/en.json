@@ -72,5 +72,7 @@
     "SETTINGS_TITLE": "Settings",
     "ABOUT_TITLE": "About",
     "DISCLAIMERS_TITLE": "Disclaimers",
-    "CREDITS_TITLE": "Credits"
+    "CREDITS_TITLE": "Credits",
+    "SETTINGS_LANGUAGE": "Language",
+    "SETTINGS_EXIT": "Exit"
 }
