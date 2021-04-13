@@ -38,12 +38,14 @@ class SettingsView extends React.Component {
                 <DialogContent>
                 <FormControl component="fieldset">
                     <FormLabel component="legend">{strings.getString("SETTINGS_LANGUAGE")}</FormLabel>
+                    <p>{strings.getString("SETTINGS_LANGUAGE_NOTES")}</p>
                     <RadioGroup
                         row
                         aria-label="language"
                         value={this.state.language}
                         onChange={(_, v) => {
                             this.setLanguage(v);
+                            location.reload();
                         }}
                     >
                         {strings.availableLanguages
