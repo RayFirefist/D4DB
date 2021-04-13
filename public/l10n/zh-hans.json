@@ -74,6 +74,6 @@
     "DISCLAIMERS_TITLE": "免责声明",
     "CREDITS_TITLE": "贡献者名单",
     "SETTINGS_LANGUAGE": "语言设置",
-    "SETTINGS_EXIT": "退出",
+    "SETTINGS_QUIT": "退出",
     "SETTINGS_LANGUAGE_NOTES": "更改语言后，页面会自动刷新以应用更改。"
 }

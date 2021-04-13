@@ -62,7 +62,7 @@ class SettingsView extends React.Component {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.onClose} color="primary">
-                        {strings.getString("SETTINGS_EXIT")}
+                        {strings.getString("SETTINGS_QUIT")}
                     </Button>
                 </DialogActions>
             </Dialog>
