@@ -69,7 +69,7 @@ class HomePage extends React.Component {
             return <h3>{strings.getString("HOME_NO_EVENTS")}</h3>;
 
         return this.state.event.map(event => (
-            <Card style={{ marginBottom: "20px" }}>
+            <Card key={event.Id} style={{ marginBottom: "20px" }}>
                 <a href={"/events/" + event.Id}>
                     <div style={{ padding: "20px" }}>
                         <ImageLoader
@@ -101,7 +101,7 @@ class HomePage extends React.Component {
             return <h3>{strings.getString("HOME_NO_GACHAS")}</h3>;
 
         return this.state.gacha.map(gacha => (
-            <Card style={{ marginBottom: "20px" }}>
+            <Card key={gacha.Id} style={{ marginBottom: "20px" }}>
                 <a href={"/gacha/" + gacha.Id}>
                     <div style={{ padding: "20px" }}>
                         <ImageLoader
