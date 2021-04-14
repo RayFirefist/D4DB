@@ -124,7 +124,7 @@ class DjEventEntryPage extends React.Component {
                 <div align="left">
                     {/* Event Information */}
                     <RowInformation left={strings.getString("EVENT_NAME")} right={event.Name} />
-                    <RowInformation left={strings.getString("EVENT_TYPE")} right={event.Type._name_} />
+                    <RowInformation left={strings.getString("EVENT_TYPE")} right={strings.getString(`EVENT_TYPE__${event.Type._name_}`, event.Type._name_)} />
                     <RowInformation left={strings.getString("EVENT_START")} right={timestampToString(event.StartDate)} />
                     <RowInformation left={strings.getString("EVENT_RECEPTION_CLOSE_DATE")} right={timestampToString(event.ReceptionCloseDate)} />
                     <RowInformation left={strings.getString("EVENT_RANK_FIX_START_DATE")} right={timestampToString(event.RankFixStartDate)} />

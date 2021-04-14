@@ -7,9 +7,9 @@ import { Card, Grid } from "@material-ui/core";
 import consts from "../../consts.json";
 import AbstractList from "../../components/common/listPage.tsx";
 import SafeImageLoader from "../../components/common/safeImage";
-//import l10n from '../../utils/l10n/l10n';
+import l10n from '../../utils/l10n/l10n';
 
-//const strings = new l10n();
+const strings = new l10n();
 
 class DjEventsListPage extends AbstractList {
     constructor(props) {
@@ -61,7 +61,7 @@ class DjEventsListPage extends AbstractList {
                             <Grid item xs={12} sm={5}>
                                 <div style={{ textAlign: "left", paddingTop: "10px" }}>
                                     <b>{event.Name}</b>
-                                    <p>{event.Type._name_}</p>
+                                    <p>{strings.getString(`EVENT_TYPE__${event.Type._name_}`, event.Type._name_)}</p>
                                 </div>
                             </Grid>
                         </Grid>
