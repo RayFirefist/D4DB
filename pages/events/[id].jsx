@@ -71,8 +71,8 @@ class DjEventEntryPage extends React.Component {
     getCharaUrl() {
         const event = this.state.event;
         return getAssetUrl(
-            `ondemand/card_chara_transparent`,
-            `card_chara_transparent_0${event.DisplayCard}_${event.DisplayCardType._value_}.png`
+            `AssetBundles/iOS`,
+            `ondemand_card_chara_transparent_0${event.DisplayCard}_${event.DisplayCardType._value_}_extracted/card_chara_transparent_0${event.DisplayCard}_${event.DisplayCardType._value_}.png`
         );
     }
 
@@ -116,7 +116,9 @@ class DjEventEntryPage extends React.Component {
                         background: `url(${this.getBgUrl()})`,
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                    }}/>
+                    }}
+                    overrideStyle={true}
+                    transparent={true}/>
                 </div>
                 <br />
                 <br />
