@@ -8,6 +8,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import SettingsIcon from "@material-ui/icons/Settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -16,6 +17,7 @@ import { withStyles } from "@material-ui/core/styles";
 import consts from "../../consts.json";
 import { window } from "global";
 import DrawerContents from "./drawer.jsx";
+import Settings from "./settings.jsx";
 // -------------------------------------------------------------------
 
 const drawerWidth = 240;
@@ -51,17 +53,28 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  title: {
+    flexGrow: 1
   }
 });
 
 class ResponsiveBase extends React.Component {
   state = {
-    open: false
+    open: false,
+    settingsOpen: false
   };
 
   static async getInitialProps(ctx) {
     //console.log(ctx)
     return { arg: null };
+  }
+
+  handleSettingsStat(status){
+    this.setState({ settingsOpen: status });
+    console.log(
+      this.state
+    );
   }
 
   handleDrawerToggle() {
@@ -93,9 +106,17 @@ class ResponsiveBase extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography className={classes.title} variant="h6" noWrap>
               {consts.name} v{consts.version}
             </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open settings"
+              edge="end"
+              onClick={this.handleSettingsStat.bind(this, true)}
+            >
+              <SettingsIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
@@ -136,6 +157,7 @@ class ResponsiveBase extends React.Component {
             {this.props.body}
           </Container>
         </div>
+        <Settings open={this.state.settingsOpen} onClose={this.handleSettingsStat.bind(this, false)} />
       </div>
     );
   }

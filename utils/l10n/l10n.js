@@ -20,6 +20,14 @@ class DjL10n {
         this.default = require('../../public/l10n/en.json');
     }
 
+    availableLanguages = [{
+        code: "en",
+        name: "English"
+    }, {
+        code: "zh-hans",
+        name: "简体中文"
+    }]
+
     // Setting the language to use
     setLanguage(language) {
         this.lang = language
