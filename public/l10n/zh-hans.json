@@ -46,6 +46,7 @@
     "CARDS_ILLUST_AFTER_TRAINING": "训练完成",
     "CARDS_ILLUST_PREMIUM": "动态卡面",
     "MEMBERS_TITLE": "成员",
+    "MEMBERS_OTHERS": "其他",
     "MUSIC_TITLE": "音乐",
     "GACHA_TITLE": "卡池",
     "GACHA_NAME": "名称",
@@ -102,5 +103,17 @@
     "CHR__Haruna Kasuga": "春日春奈",
     "CHR__Kurumi Shiratori": "白鸟胡桃",
     "CHR__Miiko Takeshita": "竹下美依子",
-    "CHR__Michiru Kaibara": "海原满"
+    "CHR__Michiru Kaibara": "海原满",
+    "OUTSIDE_CHR__湊あくあ": "凑阿夸",
+    "OUTSIDE_CHR__兎田ぺこら": "兔田佩克拉",
+    "OUTSIDE_CHR__白上フブキ": "白上吹雪",
+    "OUTSIDE_CHR__星街すいせい": "星街彗星",
+    "OUTSIDE_CHR__天野愛莉": "天野爱莉",
+    "OUTSIDE_CHR__嘉瀬茉奈": "嘉濑茉奈",
+    "OUTSIDE_CHR__姫神紗乃": "姫神纱乃",
+    "OUTSIDE_CHR__高尾灯佳": "高尾灯佳",
+    "OUTSIDE_CHR__小船柳人": "小船柳人",
+    "OUTSIDE_CHR__犬寄傳之丞": "犬寄傅之丞",
+    "OUTSIDE_CHR__三橋空": "三桥空",
+    "OUTSIDE_CHR__海原ハルキ": "海原春日"
 }
