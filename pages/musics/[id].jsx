@@ -89,7 +89,9 @@ class DjMusicEntryPage extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return "Loading...";
+    const _ = languages.getString.bind(languages);
+
+    if (this.state.loading) return _("COMMON_LOADING");
 
     if (this.state.error) return this.state.error;
 
@@ -98,7 +100,6 @@ class DjMusicEntryPage extends React.Component {
     const unit = this.state.unit;
     console.log(charts);
     const lang = languages.getLanguage();
-    const _ = languages.getString.bind(languages);
 
     console.log(music);
 

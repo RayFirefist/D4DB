@@ -91,7 +91,7 @@ class DjMemberEntryPage extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return "Loading...";
+    if (this.state.loading) return strings.getString("COMMON_LOADING");
 
     if (this.state.error) return this.state.error;
 
