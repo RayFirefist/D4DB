@@ -79,5 +79,7 @@
     "CREDITS_TITLE": "Credits",
     "SETTINGS_LANGUAGE": "Language",
     "SETTINGS_QUIT": "Close",
-    "SETTINGS_LANGUAGE_NOTES": "After changing the language, the page will be automatically refreshed to reflect the change."
+    "SETTINGS_LANGUAGE_NOTES": "After changing the language, the page will be automatically refreshed to reflect the change.",
+    "MENU_DATABASE": "Database",
+    "MENU_OTHER": "Other"
 }

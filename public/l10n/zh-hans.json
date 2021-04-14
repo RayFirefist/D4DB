@@ -75,5 +75,7 @@
     "CREDITS_TITLE": "贡献者名单",
     "SETTINGS_LANGUAGE": "语言设置",
     "SETTINGS_QUIT": "退出",
-    "SETTINGS_LANGUAGE_NOTES": "更改语言后，页面会自动刷新以应用更改。"
+    "SETTINGS_LANGUAGE_NOTES": "更改语言后，页面会自动刷新以应用更改。",
+    "MENU_DATABASE": "数据库",
+    "MENU_OTHER": "其它"
 }
