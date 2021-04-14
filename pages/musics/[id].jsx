@@ -98,6 +98,7 @@ class DjMusicEntryPage extends React.Component {
     const unit = this.state.unit;
     console.log(charts);
     const lang = languages.getLanguage();
+    const _ = languages.getString.bind(languages);
 
     console.log(music);
 
@@ -114,7 +115,7 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Name
+                        {_("MUSIC_NAME")}
                       </Typography>
                     </TableCell>
                     <TableCell align="right">{music.Name}</TableCell>
@@ -122,7 +123,7 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Group
+                      {_("MUSIC_GROUP")}
                       </Typography>
                     </TableCell>
                     <TableCell align="right">
@@ -134,16 +135,16 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Category
+                      {_("MUSIC_CATEGORY")}
                       </Typography>
                     </TableCell>
-                    <TableCell align="right">{music.Category._name_}</TableCell>
+                    <TableCell align="right">{_(`MUSIC_CATEGORY__${music.Category._name_}`, music.Category._name_)}</TableCell>
                   </TableRow>
                   {music.Arranger && (
                     <TableRow>
                       <TableCell component="th" scope="row">
                         <Typography variant="body1" align="left">
-                          Arranger
+                        {_("MUSIC_ARRANGER")}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">{music.Arranger}</TableCell>
@@ -153,7 +154,7 @@ class DjMusicEntryPage extends React.Component {
                     <TableRow>
                       <TableCell component="th" scope="row">
                         <Typography variant="body1" align="left">
-                          Composer
+                        {_("MUSIC_COMPOSER")}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">{music.Composer}</TableCell>
@@ -163,7 +164,7 @@ class DjMusicEntryPage extends React.Component {
                     <TableRow>
                       <TableCell component="th" scope="row">
                         <Typography variant="body1" align="left">
-                          Lyricist
+                        {_("MUSIC_LYRIST")}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">{music.Lyrist}</TableCell>
@@ -172,7 +173,7 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Release Date
+                      {_("MUSIC_RELEASE_DATE")}
                       </Typography>
                     </TableCell>
                     <TableCell align="right">
@@ -182,7 +183,7 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        BPM
+                      {_("MUSIC_BPM")}
                       </Typography>
                     </TableCell>
                     <TableCell align="right">{music.MusicBpm}</TableCell>
@@ -190,7 +191,7 @@ class DjMusicEntryPage extends React.Component {
                   <TableRow>
                     <TableCell component="th" scope="row">
                       <Typography variant="body1" align="left">
-                        Difficulty
+                      {_("MUSIC_DIFFICULTY")}
                       </Typography>
                     </TableCell>
                     <TableCell>
@@ -295,7 +296,7 @@ class DjMusicEntryPage extends React.Component {
                 id="panel2a-header"
               >
                 <Typography variant="h5" align="left">
-                  Charts
+                {_("MUSIC_CHARTS")}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails style={{ flexDirection: "column" }}>
