@@ -116,7 +116,7 @@ class DjMemberEntryPage extends React.Component {
                 <TableRow>
                   <TableCell component="th" scope="row">
                     <Typography variant="body1" align="left">
-                      Name
+                      {strings.getString("MEMBER_NAME")}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">{chara.FullName}</TableCell>
@@ -124,7 +124,7 @@ class DjMemberEntryPage extends React.Component {
                 <TableRow>
                   <TableCell component="th" scope="row">
                     <Typography variant="body1" align="left">
-                      Group
+                    {strings.getString("MEMBER_GROUP")}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">{unit.Name}</TableCell>
