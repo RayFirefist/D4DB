@@ -99,6 +99,8 @@ class DjMemberEntryPage extends React.Component {
     const unit = this.state.unit;
     const lang = strings.getLanguage();
 
+    const localName = strings.getString(`CHR__${chara.FullNameEnglish}`)
+
     console.log(chara);
 
     return (
@@ -106,10 +108,10 @@ class DjMemberEntryPage extends React.Component {
         <Grid container>
           <Grid item xs={12} sm={8}>
             <Typography variant="h3" align="left">
-              {lang === "jp" ? chara.FullName : chara.FullNameEnglish}
+              {lang === "jp" ? chara.FullName : localName}
             </Typography>
             <Typography variant="h6" align="left" gutterBottom={true}>
-              {lang === "jp" ? chara.FullNameEnglish : chara.FullName}
+              {lang === "jp" ? localName : chara.FullName}
             </Typography>
             <Table aria-label="simple table">
               <TableBody>
