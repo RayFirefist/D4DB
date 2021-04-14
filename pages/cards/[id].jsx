@@ -166,14 +166,14 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 1} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_0.png")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_0.png"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`)}>
+                    <SafeImageLoader src={`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_1.png")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara_transparent/card_chara_transparent_0" + card.Id + "_1.png"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`)}>
+                    <SafeImageLoader src={`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
