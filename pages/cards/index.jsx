@@ -7,9 +7,9 @@ import { Card, Grid } from '@material-ui/core';
 import consts from '../../consts.json';
 import AbstractList from '../../components/common/listPage.tsx';
 import D4DJCardIcon from '../../components/cards/icon.jsx'
-//import l10n from '../../utils/l10n/l10n';
+import l10n from '../../utils/l10n/l10n';
 
-//const strings = new l10n();
+const strings = new l10n();
 
 class DjCardsListPage extends AbstractList {
     constructor(props) {
@@ -52,7 +52,9 @@ class DjCardsListPage extends AbstractList {
                         <Grid item xs={1}></Grid>
                         <Grid item xs={4} sm={6} md={8}>
                             <div style={{textAlign: "left"}}>
-                                <b>{this.isJp ? charas[card.Character].FullName : charas[card.Character].FullNameEnglish}</b>
+                                <b>{this.isJp
+                                    ? charas[card.Character].FullName
+                                    : strings.getString(`CHR__${charas[card.Character].FullNameEnglish}`, charas[card.Character].FullNameEnglish)}</b>
                                 <p>{card.CardName}</p>
                             </div>
                         </Grid>

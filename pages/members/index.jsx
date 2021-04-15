@@ -6,6 +6,9 @@ import { Card, Grid, Typography } from "@material-ui/core";
 
 import AbstractList from "../../components/common/listPage.tsx";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
+import l10n from '../../utils/l10n/l10n';
+
+const strings = new l10n();
 
 class DjMembersListPage extends AbstractList {
   constructor(props) {
@@ -47,7 +50,7 @@ class DjMembersListPage extends AbstractList {
         <Grid container key={"unit" + id}>
           <Grid item xs={12}>
             <Typography variant="h5" align="left">
-              <p>{id === "50" ? "Others" : unit.Name}</p>
+              <p>{id === "50" ? strings.getString("MEMBERS_OTHERS") : unit.Name}</p>
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -76,11 +79,15 @@ class DjMembersListPage extends AbstractList {
                           )}
                           <Grid item xs={12}>
                             <Typography variant="h6" align="center">
-                              {member.FullName}
+                              {this.isjp
+                              ? member.FullName
+                              : strings.getString(`CHR__${member.FullNameEnglish}`,
+                                strings.getString(`OUTSIDE_CHR__${member.FullName}`,
+                                member.FullName)
+                              )}
                             </Typography>
                             <Typography variant="caption" align="center">
-                              {member.FullNameEnglish ||
-                                member.FirstNameEnglish}
+                              {member.FirstNameEnglish}
                             </Typography>
                           </Grid>
                         </Grid>

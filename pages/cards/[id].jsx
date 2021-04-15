@@ -97,7 +97,7 @@ class DjCardsEntryPage extends React.Component {
     render() {
 
         if (this.state.loading)
-            return "Loading..."
+            return strings.getString("COMMON_LOADING");
 
         if (this.state.error)
             return this.state.error
@@ -105,7 +105,7 @@ class DjCardsEntryPage extends React.Component {
         const card = this.state.card;
         const chara = this.state.character;
         const lang = strings.getLanguage()
-        const charaName = lang === "ja" ? chara.FullName : chara.FullNameEnglish;
+        const charaName = lang === "ja" ? chara.FullName : strings.getString(`CHR__${chara.FullNameEnglish}`);
         const clothCardId = card.ClothCardId === 0 ? card.Id : card.ClothCardId;
 
         return <div >

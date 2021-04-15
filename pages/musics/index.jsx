@@ -14,9 +14,9 @@ import {
 import AbstractList from "../../components/common/listPage.tsx";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import SafeImageLoader from "../../components/common/safeImage";
-//import l10n from '../../utils/l10n/l10n';
+import l10n from '../../utils/l10n/l10n';
 
-//const strings = new l10n();
+const strings = new l10n();
 
 class DjCardsListPage extends AbstractList {
     constructor(props) {
@@ -118,7 +118,10 @@ const MusicCardListView = ({ music, unit, charts }) => {
                                             ? unit.Name + " - "
                                             : music.SpecialUnitName &&
                                               music.SpecialUnitName + " - "}
-                                        {music.Category._name_}
+                                        {strings.getString(
+                                            `MUSIC_CATEGORY__${music.Category._name_}`,
+                                            music.Category._name_
+                                        )}
                                     </Typography>
                                 </Box>
                                 <Box>

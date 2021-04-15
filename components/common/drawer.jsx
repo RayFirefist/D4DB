@@ -68,7 +68,7 @@ class DrawerContents extends React.Component {
             >
 
                 <ListItem button onClick={this.handleClickDb.bind(this)}>
-                    <ListItemText primary="Database" />
+                    <ListItemText primary={strings.getString("MENU_DATABASE")} />
                     {this.state.openDb ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={this.state.openDb} timeout="auto" unmountOnExit>
@@ -106,7 +106,7 @@ class DrawerContents extends React.Component {
                     </List>
                 </Collapse>
                 <ListItem button onClick={this.handleClickTools.bind(this)}>
-                    <ListItemText primary="Other" />
+                    <ListItemText primary={strings.getString("MENU_OTHER")} />
                     {this.state.openTools ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={this.state.openTools} timeout="auto" unmountOnExit>

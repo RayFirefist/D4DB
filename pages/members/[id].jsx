@@ -91,13 +91,15 @@ class DjMemberEntryPage extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return "Loading...";
+    if (this.state.loading) return strings.getString("COMMON_LOADING");
 
     if (this.state.error) return this.state.error;
 
     const chara = this.state.character;
     const unit = this.state.unit;
     const lang = strings.getLanguage();
+
+    const localName = strings.getString(`CHR__${chara.FullNameEnglish}`)
 
     console.log(chara);
 
@@ -106,17 +108,17 @@ class DjMemberEntryPage extends React.Component {
         <Grid container>
           <Grid item xs={12} sm={8}>
             <Typography variant="h3" align="left">
-              {lang === "jp" ? chara.FullName : chara.FullNameEnglish}
+              {lang === "jp" ? chara.FullName : localName}
             </Typography>
             <Typography variant="h6" align="left" gutterBottom={true}>
-              {lang === "jp" ? chara.FullNameEnglish : chara.FullName}
+              {lang === "jp" ? localName : chara.FullName}
             </Typography>
             <Table aria-label="simple table">
               <TableBody>
                 <TableRow>
                   <TableCell component="th" scope="row">
                     <Typography variant="body1" align="left">
-                      Name
+                      {strings.getString("MEMBER_NAME")}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">{chara.FullName}</TableCell>
@@ -124,7 +126,7 @@ class DjMemberEntryPage extends React.Component {
                 <TableRow>
                   <TableCell component="th" scope="row">
                     <Typography variant="body1" align="left">
-                      Group
+                    {strings.getString("MEMBER_GROUP")}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">{unit.Name}</TableCell>
