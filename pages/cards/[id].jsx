@@ -33,7 +33,6 @@ class DjCardsEntryPage extends React.Component {
     }
 
     static async getInitialProps(ctx) {
-        //console.log(ctx)
         return { arg: null }
     }
 
@@ -148,7 +147,7 @@ class DjCardsEntryPage extends React.Component {
             {/* Cards Assets */}
             <div align="left">
                 <h1>{strings.getString("CARD_ILLUST_TITLE")}</h1>
-                <CenteredTabs labels={["CARD_ILLUST_ILLUSTS", "CARD_ILLUST_TRANSPARENT", "CARD_ILLUST_ICONS", "CARD_ILLUST_CHIBI"]} callbackChange={(e) => { this.setState({ tab: e }) }} />
+                <CenteredTabs labels={["CARD_ILLUST_ILLUSTS", "CARD_ILLUST_TRANSPARENT", "CARD_ILLUST_ICONS", "CARD_ILLUST_BIG_IMAGE", "CARD_ILLUST_CHIBI"]} callbackChange={(e) => { this.setState({ tab: e }) }} />
             </div>
             <div hidden={this.state.tab !== 0} align="center">
                 <br />
@@ -190,7 +189,20 @@ class DjCardsEntryPage extends React.Component {
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
-            <div hidden={this.state.tab !== 3}>
+            <div hidden={this.state.tab !== 3} align="center">
+                <br />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                    <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
+                </Card>
+
+                <br />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg")}>
+                    <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                    <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
+                </Card>
+            </div>
+            <div hidden={this.state.tab !== 4}>
                 <Grid container>
                     <Grid item xs={6}>
                         <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png")}>
