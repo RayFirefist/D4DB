@@ -191,13 +191,13 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 3} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg")}>
                     <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg")}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg")}>
                     <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
