@@ -37,7 +37,6 @@ class DjEventEntryPage extends React.Component {
     }
 
     static async getInitialProps(ctx) {
-        //console.log(ctx)
         return { arg: null };
     }
 
@@ -51,7 +50,6 @@ class DjEventEntryPage extends React.Component {
         })
             .then(r => r.json())
             .then(json => {
-                console.log(json);
                 if (json.error)
                     return this.setState({ error: json.error, loading: false });
 
@@ -103,8 +101,6 @@ class DjEventEntryPage extends React.Component {
 
         const event = this.state.event;
         const lang = strings.getLanguage();
-
-        console.log(event);
 
         return (
             <div>

@@ -37,7 +37,6 @@ class DjGachaListPage extends AbstractList {
     renderElements() {
         let gachas = this.state.databases.GachaMaster;
         //let charas = this.state.databases.CharacterMaster;
-        console.log(gachas);
 
         let out = []
 

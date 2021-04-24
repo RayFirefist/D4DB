@@ -38,7 +38,6 @@ abstract class DjAbstractListPage extends React.Component {
   }
 
   static async getInitialProps(ctx) {
-    //console.log(ctx)
     return { arg: null };
   }
 
@@ -60,7 +59,7 @@ abstract class DjAbstractListPage extends React.Component {
   }
 
   displayMore() {
-    console.log("display more");
+    // TODO
   }
 
   renderElements(): object {
@@ -93,8 +92,6 @@ abstract class DjAbstractListPage extends React.Component {
     const classes = this.classes;
     const strings: l10n = this.strings;
     const elements: any = this.renderElements();
-
-    console.log(elements);
 
     return (
       <div>

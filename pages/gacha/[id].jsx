@@ -40,7 +40,6 @@ class DjGachaEntryPage extends React.Component {
     }
 
     static async getInitialProps(ctx) {
-        //console.log(ctx)
         return { arg: null };
     }
 
@@ -62,7 +61,6 @@ class DjGachaEntryPage extends React.Component {
         })
             .then(r => r.json())
             .then(json => {
-                console.log(json);
                 if (json.error)
                     return this.setState({ error: json.error, loading: false });
 
@@ -135,8 +133,6 @@ class DjGachaEntryPage extends React.Component {
 
         const gacha = this.state.gacha;
         const lang = strings.getLanguage();
-
-        console.log(gacha);
 
         return (
             <div>

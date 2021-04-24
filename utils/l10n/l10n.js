@@ -6,7 +6,6 @@ const window = require("global/window");
 class DjL10n {
     constructor() {
         if (process.browser) {
-            console.log(localStorage)
             this.lang = localStorage.getItem("ui_lang");
 
             if (this.lang === undefined || this.lang === null) {

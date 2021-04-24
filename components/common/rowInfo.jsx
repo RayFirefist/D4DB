@@ -6,7 +6,6 @@ class RowInformation extends Component {
     constructor(props) {
         super(props);
         let hidden = props.hidden === undefined ? false : props.hidden
-        //console.log(props.left + " " + props.right + " " + hidden)
         this.state = {
             "left": props.left,
             "right": props.right,

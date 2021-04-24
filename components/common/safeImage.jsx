@@ -167,7 +167,6 @@ class SafeImageLoader extends Component {
     }
 
     componentDidUpdate() {
-        console.log("Trigger update");
         this.src = this.props.src;
         if (this.downloadEnabled && !(this.src === this.oldSrc)) {
             this.setState({ loading: true });

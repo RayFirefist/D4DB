@@ -26,11 +26,8 @@ class DjMembersListPage extends AbstractList {
   }
 
   renderElements() {
-    console.log(this.state);
     let members = this.state.databases.CharacterMaster;
     let units = this.state.databases.UnitMaster;
-
-    console.log(units);
 
     let out = [];
 

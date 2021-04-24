@@ -10,7 +10,6 @@ function CenteredTabs(props) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(newValue);
         if (callback !== undefined)
             callback(newValue);
     };

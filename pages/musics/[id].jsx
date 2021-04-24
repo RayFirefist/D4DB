@@ -46,7 +46,6 @@ class DjMusicEntryPage extends React.Component {
   }
 
   static async getInitialProps(ctx) {
-    //console.log(ctx)
     return { arg: null };
   }
 
@@ -66,7 +65,6 @@ class DjMusicEntryPage extends React.Component {
           return this.setState({ error: json.error, loading: false });
 
         json = json.result;
-        console.log(json.MusicMaster, typeof this.state.id);
         const music = json.MusicMaster[this.state.id];
         const charts = {
           Easy: json.ChartMaster[music.Id + "1"],
@@ -98,10 +96,7 @@ class DjMusicEntryPage extends React.Component {
     const music = this.state.music;
     const charts = this.state.charts;
     const unit = this.state.unit;
-    console.log(charts);
     const lang = languages.getLanguage();
-
-    console.log(music);
 
     return (
       <React.Fragment>

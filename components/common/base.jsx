@@ -66,15 +66,11 @@ class ResponsiveBase extends React.Component {
   };
 
   static async getInitialProps(ctx) {
-    //console.log(ctx)
     return { arg: null };
   }
 
   handleSettingsStat(status){
     this.setState({ settingsOpen: status });
-    console.log(
-      this.state
-    );
   }
 
   handleDrawerToggle() {

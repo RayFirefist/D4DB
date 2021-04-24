@@ -33,7 +33,6 @@ class DjMemberEntryPage extends React.Component {
   }
 
   static async getInitialProps(ctx) {
-    //console.log(ctx)
     return { arg: null };
   }
 
@@ -47,7 +46,6 @@ class DjMemberEntryPage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log(json);
         if (json.error)
           return this.setState({ error: json.error, loading: false });
 
@@ -100,8 +98,6 @@ class DjMemberEntryPage extends React.Component {
     const lang = strings.getLanguage();
 
     const localName = strings.getString(`CHR__${chara.FullNameEnglish}`)
-
-    console.log(chara);
 
     return (
       <div>
