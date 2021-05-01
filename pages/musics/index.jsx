@@ -95,6 +95,9 @@ const MusicCardListView = ({ music, unit, charts }) => {
                             <SafeImageLoader
                                 src={getIllustUrl(music)}
                                 alt={music.Id}
+                                style={{
+                                    width: "100%"
+                                }}
                             />
                         </Box>
                         <Box width="100%">
