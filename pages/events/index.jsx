@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Card, Grid } from "@material-ui/core";
+import { Box, Card, Grid } from "@material-ui/core";
 
 import consts from "../../consts.json";
 import AbstractList from "../../components/common/listPage.tsx";
@@ -51,11 +51,18 @@ class DjEventsListPage extends AbstractList {
                         <Grid container>
                             <Grid item xs={0} sm={1}></Grid>
                             <Grid item xs={12} sm={5}>
-                                <SafeImageLoader
-                                    src={this.getIllustUrl(event)}
-                                    alt={event.Id}
-                                    className={this.classes.bannerIcon}
-                                />
+                                <Box
+                                    display="flex"
+                                    width="100%"
+                                    height="100px"
+                                    justifyContent="center"
+                                >
+                                    <SafeImageLoader
+                                        src={this.getIllustUrl(event)}
+                                        alt={event.Id}
+                                        className={this.classes.responsiveIcon}
+                                    />
+                                </Box>
                             </Grid>
                             <Grid item xs={0} sm={1}></Grid>
                             <Grid item xs={12} sm={5}>
