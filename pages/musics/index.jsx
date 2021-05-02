@@ -11,12 +11,16 @@ import {
     Box
 } from "@material-ui/core";
 
+import Filter from "../../components/common/filter.tsx";
 import AbstractList from "../../components/common/listPage.tsx";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import SafeImageLoader from "../../components/common/safeImage";
-import l10n from '../../utils/l10n/l10n';
+import l10n from "../../utils/l10n/l10n";
+import arrToMap from "../../utils/filter/arrToMap";
 
 const strings = new l10n();
+
+const _ = strings.getString.bind(strings);
 
 class DjCardsListPage extends AbstractList {
     constructor(props) {
@@ -26,13 +30,36 @@ class DjCardsListPage extends AbstractList {
         this.sortDefaultKey = "Id";
         this.sortAvailableKeys = ["Id", "StartDate", "EndDate"];
         this.availableFilters = {
-            MusicCategory: ["Original", "Cover", "Game", "Instrumental", "Collabo"],
-            IsTutorial: [true, false]
+            MusicCategory: {
+                type: "MULTI_SELECT",
+                values: {
+                    Original: _("MUSIC_CATEGORY__Original"),
+                    Cover: _("MUSIC_CATEGORY__Cover"),
+                    Game: _("MUSIC_CATEGORY__Game"),
+                    Instrumental: _("MUSIC_CATEGORY__Instrumental"),
+                    Collabo: _("MUSIC_CATEGORY__Collabo")
+                }
+            }
+        };
+        this.state = {
+            ...this.state,
+            music: this.state.databases.MusicMaster
         };
     }
 
+    handleFilter(filter) {
+        let arr = Object.entries(this.state.databases.MusicMaster);
+        if (filter.MusicCategory && filter.MusicCategory.length) {
+            arr = arr.filter(([_, v]) =>
+            filter.MusicCategory.includes(v.Category._name_));
+        }
+        this.setState({
+            music: arrToMap(arr)
+        })
+    }
+
     renderElements() {
-        let musics = this.state.databases.MusicMaster;
+        const musics = this.state.music || this.state.databases.MusicMaster;
         let units = this.state.databases.UnitMaster;
         let charts = this.state.databases.ChartMaster;
         let res = {};
@@ -43,7 +70,13 @@ class DjCardsListPage extends AbstractList {
             res[m.OpenKey].push(m.Name);
         });
 
-        let out = [];
+        let out = [
+            <Filter
+                key="filter"
+                rules={this.availableFilters}
+                onUpdate={this.handleFilter.bind(this)}
+            />
+        ];
 
         for (let music in musics) {
             music = musics[music];
