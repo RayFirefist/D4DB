@@ -64,6 +64,10 @@ abstract class DjAbstractListPage extends React.Component {
     // TODO
   }
 
+  renderFilter(): object {
+    return <></>;
+  }
+
   renderElements(): object {
     throw new Error("renderElements must be implemented first");
   }
@@ -86,6 +90,10 @@ abstract class DjAbstractListPage extends React.Component {
     this.setState({filters: filters});
   }
 
+  getRenderingLength(): number {
+    return 0;
+  }
+
   render() {
     if (this.state.loading) return <LoadingComponent />;
 
@@ -93,7 +101,6 @@ abstract class DjAbstractListPage extends React.Component {
 
     const classes = this.classes;
     const strings: l10n = this.strings;
-    const elements: any = this.renderElements();
 
     return (
       <div>
@@ -104,11 +111,13 @@ abstract class DjAbstractListPage extends React.Component {
 
         <br />
         <div style={{ textAlign: "left" }} hidden={this.hideEntriesAmount}>
-          {strings.getString("COMMON_ENTRIES").format(elements.length)}
+        {/* TODO: update element length */}
+          {strings.getString("COMMON_ENTRIES").format(this.getRenderingLength())}
         </div>
 
         {/* Information */}
-        {elements}
+        {this.renderFilter()}
+        {this.renderElements()}
       </div>
     );
   }
