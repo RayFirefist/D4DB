@@ -17,6 +17,7 @@ import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import SafeImageLoader from "../../components/common/safeImage";
 import l10n from "../../utils/l10n/l10n";
 import arrToMap from "../../utils/filter/arrToMap";
+import isVoidLike from "../../utils/filter/isVoidLike"
 
 const strings = new l10n();
 
@@ -48,14 +49,22 @@ class DjCardsListPage extends AbstractList {
     }
 
     handleFilter(filter) {
+        if (Object.values(filter).filter(x => !isVoidLike(x)).length === 0) {
+            this.setState({
+                music: this.state.databases.MusicMaster
+            });
+            return;
+        }
+
         let arr = Object.entries(this.state.databases.MusicMaster);
         if (filter.MusicCategory && filter.MusicCategory.length) {
             arr = arr.filter(([_, v]) =>
-            filter.MusicCategory.includes(v.Category._name_));
+                filter.MusicCategory.includes(v.Category._name_)
+            );
         }
         this.setState({
             music: arrToMap(arr)
-        })
+        });
     }
 
     renderElements() {
