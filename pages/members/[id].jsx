@@ -97,7 +97,10 @@ class DjMemberEntryPage extends React.Component {
     const unit = this.state.unit;
     const lang = strings.getLanguage();
 
-    const localName = strings.getString(`CHR__${chara.FullNameEnglish}`)
+    const localName = strings.getString(`CHR__${chara.FullNameEnglish}`,
+                          strings.getString(`OUTSIDE_CHR__${chara.FullName}`,
+                              chara.FullName)
+                      )
 
     return (
       <div>
