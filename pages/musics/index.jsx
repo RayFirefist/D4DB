@@ -10,13 +10,21 @@ import {
     Avatar,
     Box
 } from "@material-ui/core";
+import InfiniteScroll from "react-infinite-scroll-component";
 
+import Filter from "../../components/common/filter.tsx";
 import AbstractList from "../../components/common/listPage.tsx";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import SafeImageLoader from "../../components/common/safeImage";
-import l10n from '../../utils/l10n/l10n';
+import l10n from "../../utils/l10n/l10n";
+import arrToMap from "../../utils/filter/arrToMap";
+import isVoidLike from "../../utils/filter/isVoidLike";
 
 const strings = new l10n();
+
+const _ = strings.getString.bind(strings);
+
+const LIST_STEP_SIZE = 10;
 
 class DjCardsListPage extends AbstractList {
     constructor(props) {
@@ -26,42 +34,114 @@ class DjCardsListPage extends AbstractList {
         this.sortDefaultKey = "Id";
         this.sortAvailableKeys = ["Id", "StartDate", "EndDate"];
         this.availableFilters = {
-            MusicCategory: ["Original", "Cover", "Game", "Instrumental", "Collabo"],
-            IsTutorial: [true, false]
+            MusicCategory: {
+                type: "MULTI_SELECT",
+                values: {
+                    Original: _("MUSIC_CATEGORY__Original"),
+                    Cover: _("MUSIC_CATEGORY__Cover"),
+                    Game: _("MUSIC_CATEGORY__Game"),
+                    Instrumental: _("MUSIC_CATEGORY__Instrumental"),
+                    Collabo: _("MUSIC_CATEGORY__Collabo")
+                }
+            }
+        };
+
+        const musics = Object.values(this.state.databases.MusicMaster || {});
+        this.state = {
+            ...this.state,
+            prepared: false,
+            music: musics,
+            shownMusic: musics.slice(0, LIST_STEP_SIZE),
+            hasMore: musics.length > LIST_STEP_SIZE
         };
     }
 
-    renderElements() {
-        let musics = this.state.databases.MusicMaster;
-        let units = this.state.databases.UnitMaster;
-        let charts = this.state.databases.ChartMaster;
-        let res = {};
-        Object.values(musics).forEach(m => {
-            if (!(m.OpenKey in res)) {
-                res[m.OpenKey] = [];
-            }
-            res[m.OpenKey].push(m.Name);
+    componentDidUpdate() {
+        if (this.state.prepared) return;
+        if (this.state.music.length === 0) return;
+
+        const musics = this.state.music;
+
+        this.setState({
+            shownMusic: musics.slice(0, LIST_STEP_SIZE),
+            hasMore: musics.length > LIST_STEP_SIZE,
+            prepared: true
         });
+    }
 
-        let out = [];
-
-        for (let music in musics) {
-            music = musics[music];
-
-            if (music.CardName === "※危険トランプ追加用") continue;
-
-            out.push(
-                <div key={`music-${music.Id}`} style={{ margin: "10px" }}>
-                    <MusicCardListView
-                        music={music}
-                        unit={units[music.Unit]}
-                        charts={charts}
-                    />
-                </div>
-            );
+    handleFilter(filter) {
+        if (Object.values(filter).filter(x => !isVoidLike(x)).length === 0) {
+            this.setState({
+                music: Object.values(this.state.databases.MusicMaster),
+                prepared: false
+            });
+            return;
         }
 
-        return out;
+        let arr = Object.values(this.state.databases.MusicMaster);
+        if (filter.MusicCategory && filter.MusicCategory.length) {
+            arr = arr.filter(v =>
+                filter.MusicCategory.includes(v.Category._name_)
+            );
+        }
+        this.setState({
+            music: arr,
+            prepared: false
+        });
+    }
+
+    nextPage() {
+        if (this.state.shownMusic.length >= this.state.music.length) {
+            this.setState({
+                hasMore: false
+            });
+            return;
+        }
+
+        this.setState({
+            shownMusic: this.state.music.slice(
+                0,
+                this.state.shownMusic.length + LIST_STEP_SIZE
+            )
+        });
+    }
+
+    renderFilter() {
+        return (
+            <Filter
+                key="filter"
+                rules={this.availableFilters}
+                onUpdate={this.handleFilter.bind(this)}
+            />
+        );
+    }
+
+    getRenderingLength() {
+        return this.state.music.length;
+    }
+
+    renderElements() {
+        let units = this.state.databases.UnitMaster;
+        let charts = this.state.databases.ChartMaster;
+
+        return (
+            <InfiniteScroll
+                dataLength={this.state.shownMusic.length}
+                next={this.nextPage.bind(this)}
+                hasMore={this.state.hasMore}
+                loader={<h4>Loading...</h4>}
+            >
+                {this.state.shownMusic.map(music => (
+                    <div key={`music-${music.Id}`} style={{ margin: "10px" }}>
+                        <MusicCardListView
+                            music={music}
+                            unit={units[music.Unit]}
+                            charts={charts}
+                        />
+                    </div>
+                ))}
+            </InfiniteScroll>
+        );
     }
 }
 

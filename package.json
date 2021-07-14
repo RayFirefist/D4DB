@@ -17,6 +17,7 @@
         "next-build-id": "^3.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-infinite-scroll-component": "^6.1.0",
         "react-json-view": "^1.21.3",
         "react-live2d": "^1.0.31",
         "react-router-dom": "^5.2.0",
