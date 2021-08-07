@@ -136,6 +136,8 @@ class DjGachaEntryPage extends React.Component {
         const gacha = this.state.gacha;
         const lang = strings.getLanguage();
 
+        console.log("GACHA", gacha.Type)
+
         return (
             <div>
                 <div align="left">
