@@ -6,8 +6,10 @@ import l10n from "../utils/l10n/l10n";
 import ImageLoader from "../components/common/image";
 import Countdown from "../components/common/countdown";
 import { Alert } from "@material-ui/lab";
+import Cdn from "../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 const forbiddenGachaId = [4, 5, 6];
 
 class HomePage extends React.Component {
@@ -20,7 +22,7 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: ["GachaMaster", "EventMaster"] }),
+            body: JSON.stringify({ dbs: ["GachaMaster", "EventMaster"], cdnKey: cdns.getCurrentCdnKey() }),
             headers: {
                 "Content-Type": "application/json"
             },
@@ -74,7 +76,7 @@ class HomePage extends React.Component {
                     <div style={{ padding: "20px" }}>
                         <ImageLoader
                             src={
-                                consts.cdn +
+                                cdns.getCdnAddress() +
                                 "ondemand/event/event_{0}/banner_event.png".format(
                                     event.Id
                                 )
@@ -106,7 +108,7 @@ class HomePage extends React.Component {
                     <div style={{ padding: "20px" }}>
                         <ImageLoader
                             src={
-                                consts.cdn +
+                                cdns.getCdnAddress() +
                                 "ondemand/banner/banner_gacha_{0}.png".format(
                                     gacha.Id.toString().padStart(4, "0")
                                 )
@@ -130,6 +132,10 @@ class HomePage extends React.Component {
                     <h1>{strings.getString("HOME_TITLE")}</h1>
                     <br></br>
                 </div>
+                <Alert severity={"info"} style={{ textAlign: "left" }}>
+                    {strings.getString("COMMON_CHANGE_SERVER_INFO")}
+                </Alert>
+                <br />
                 <Alert severity={"warning"} style={{ textAlign: "left" }}>
                     {strings.getString("COMMON_OPEN_ALPHA_WARNING")}
                 </Alert>

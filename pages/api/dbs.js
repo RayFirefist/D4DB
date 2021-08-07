@@ -1,8 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+import Cdn from '../../utils/api/cdns';
 import httpCodes from '../../utils/api/statusCode';
 
 const consts = require('../../consts.json');
+const cdns = new Cdn();
 
 export default async(req, res) => {
     if (req.method !== 'POST') {
@@ -13,6 +15,14 @@ export default async(req, res) => {
         });
     } else {
         let out = {};
+        let cdnKey = cdns.getDefaultCdnKey();
+        
+        // if specific cdnKey is provided
+        if (req.body.cdnKey !== undefined) {
+            cdnKey = cdnKey = req.body.cdnKey;
+        }
+        console.log("CDN: KEY", cdnKey);
+        console.log("CDN: URL", cdns.getCdnAddress(cdnKey));
 
         // list of dbs not defined
         if (req.body.dbs === undefined) {
@@ -54,7 +64,7 @@ export default async(req, res) => {
                 for (let db in req.body.dbs) {
                     db = req.body.dbs[db];
 
-                    let response = await fetch(consts.cdn + 'Master/' + db + '.json');
+                    let response = await fetch(cdns.getCdnAddress(cdnKey) + 'Master/' + db + '.json');
 
                     // db not found or unreachable
                     if (response.status !== 200)

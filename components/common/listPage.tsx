@@ -3,8 +3,10 @@ import l10n from "../../utils/l10n/l10n";
 import classes from "../../styles/list.module.css";
 import LoadingComponent from "./loading";
 import { Typography } from "@material-ui/core";
+import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 abstract class DjAbstractListPage extends React.Component {
   protected databases: object = [];
@@ -43,7 +45,7 @@ abstract class DjAbstractListPage extends React.Component {
 
   componentDidMount() {
     fetch("/api/dbs", {
-      body: JSON.stringify({ dbs: this.databases }),
+      body: JSON.stringify({ dbs: this.databases, cdnKey: cdns.getCurrentCdnKey()}),
       headers: {
         "Content-Type": "application/json",
       },

@@ -8,9 +8,11 @@ import CenteredTabs from '../../components/common/tabs.jsx';
 import ImageLoader from '../../components/common/image.jsx';
 import D4DJCard from '../../components/cards/card';
 import SafeImageLoader from '../../components/common/safeImage';
+import Cdn from '../../utils/api/cdns';
 
 const consts = require('../../consts.json')
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjCardsEntryPage extends React.Component {
 
@@ -38,7 +40,7 @@ class DjCardsEntryPage extends React.Component {
 
     componentDidMount() {
         fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: ['CardMaster', 'CharacterMaster'] }),
+            body: JSON.stringify({ dbs: ['CardMaster', 'CharacterMaster'], cdnKey: cdns.getCurrentCdnKey() }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -63,7 +65,7 @@ class DjCardsEntryPage extends React.Component {
 
     getIllustUrl() {
         const card = this.state.card;
-        return consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_" + this.state.illust + ".jpg"
+        return cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_" + this.state.illust + ".jpg"
     }
 
     swapIllust() {
@@ -124,7 +126,7 @@ class DjCardsEntryPage extends React.Component {
 
             {/* Information */}
             <div align="left">
-                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<SafeImageLoader src={consts.cdn + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{ width: "100%", maxWidth: "50px" }} /></div>} />
+                <RowInformation left={strings.getString("CARD_CHARA_NAME")} right={<div>{charaName}<SafeImageLoader src={cdns.getCdnAddress() + "adv/ondemand/chara_icon/adv_icon_0" + card.Character + ".png"} style={{ width: "100%", maxWidth: "50px" }} /></div>} />
                 <RowInformation left={strings.getString("CARD_NAME")} right={card.CardName} />
                 <RowInformation left={strings.getString("CARD_RARITY")} right={card.Rarity} />
                 <RowInformation left={strings.getString("CARD_ATTRIBUTE")} right={strings.getString("COMMON_ATTRIBUTE_{0}".format(card.Attribute))} />
@@ -151,87 +153,87 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 0} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
 
             </div>
             <div hidden={this.state.tab !== 1} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`)}>
-                    <SafeImageLoader src={`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`)}>
+                    <SafeImageLoader src={`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`)}>
-                    <SafeImageLoader src={`${consts.cdn}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`)}>
+                    <SafeImageLoader src={`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_1_extracted/card_chara_transparent_0${card.Id}_1.png`} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
             <div hidden={this.state.tab !== 2} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
             <div hidden={this.state.tab !== 3} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
 
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg")}>
-                    <SafeImageLoader src={consts.cdn + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity < 3} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg")}>
+                    <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_1.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_AFTER_TRAINING")}</p>
                 </Card>
             </div>
             <div hidden={this.state.tab !== 4}>
                 <Grid container>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_00.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_01.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_02.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_10.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_11.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                     <Grid item xs={6}>
-                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png")}>
-                            <SafeImageLoader src={consts.cdn + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png"} style={{ maxWidth: "90%" }} />
+                        <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png")}>
+                            <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/sd_card_chara/sd_card_chara_0" + clothCardId + "_12.png"} style={{ maxWidth: "90%" }} />
                         </Card>
                     </Grid>
                 </Grid>

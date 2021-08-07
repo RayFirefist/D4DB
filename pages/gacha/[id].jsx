@@ -16,8 +16,10 @@ import ImageLoader from "../../components/common/image";
 import SafeImageLoader from "../../components/common/safeImage";
 import D4DJCardIcon from "../../components/cards/icon";
 import consts from "../../consts.json";
+import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjGachaEntryPage extends React.Component {
     constructor(props) {
@@ -52,7 +54,7 @@ class DjGachaEntryPage extends React.Component {
                     "CardMaster",
                     "CharacterMaster",
                     "UnitMaster"
-                ]
+                ], cdnKey: cdns.getCurrentCdnKey()
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -103,7 +105,7 @@ class DjGachaEntryPage extends React.Component {
 
     getIllustUrl(card, illustMode = 0) {
         return (
-            consts.cdn +
+            cdns.getCdnAddress() +
             "ondemand/card_icon/card_icon_0" +
             card.Id +
             "_" +
@@ -115,7 +117,7 @@ class DjGachaEntryPage extends React.Component {
     getIllustUrl2() {
         let id = this.state.gacha.Id.toString();
         return (
-            consts.cdn +
+            cdns.getCdnAddress() +
             "ondemand/gacha/top/banner/" +
             id.padStart(5, "0") +
             ".png"
@@ -123,7 +125,7 @@ class DjGachaEntryPage extends React.Component {
     }
 
     getIllustUrl3(_id) {
-        return consts.cdn + "ondemand/gacha/top/live2d_bg/" + _id + ".jpg";
+        return cdns.getCdnAddress() + "ondemand/gacha/top/live2d_bg/" + _id + ".jpg";
     }
 
     render() {

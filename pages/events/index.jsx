@@ -8,8 +8,10 @@ import consts from "../../consts.json";
 import AbstractList from "../../components/common/listPage.tsx";
 import SafeImageLoader from "../../components/common/safeImage";
 import l10n from '../../utils/l10n/l10n';
+import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjEventsListPage extends AbstractList {
     constructor(props) {
@@ -27,7 +29,7 @@ class DjEventsListPage extends AbstractList {
     getIllustUrl(event) {
         try {
             let id = event.Id.toString();
-            return `${consts.cdn}ondemand/event/event_${id}/banner_event.png`;
+            return `${cdns.getCdnAddress()}ondemand/event/event_${id}/banner_event.png`;
         }
         catch (e) {
             return null;

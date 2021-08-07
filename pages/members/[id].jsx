@@ -10,8 +10,10 @@ import {
   TableRow
 } from "@material-ui/core";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
+import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjMemberEntryPage extends React.Component {
   constructor(props) {
@@ -38,7 +40,7 @@ class DjMemberEntryPage extends React.Component {
 
   componentDidMount() {
     fetch("/api/dbs", {
-      body: JSON.stringify({ dbs: ["CharacterMaster", "UnitMaster"] }),
+      body: JSON.stringify({ dbs: ["CharacterMaster", "UnitMaster"] , cdnKey: cdns.getCurrentCdnKey()}),
       headers: {
         "Content-Type": "application/json"
       },

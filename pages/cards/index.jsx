@@ -8,8 +8,10 @@ import consts from '../../consts.json';
 import AbstractList from '../../components/common/listPage.tsx';
 import D4DJCardIcon from '../../components/cards/icon.jsx'
 import l10n from '../../utils/l10n/l10n';
+import Cdn from '../../utils/api/cdns';
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjCardsListPage extends AbstractList {
     constructor(props) {
@@ -26,7 +28,7 @@ class DjCardsListPage extends AbstractList {
     }
 
     getIllustUrl(card, illustMode = 0) {
-        return consts.cdn + "ondemand/card_icon/card_icon_0" + card.Id + "_" + illustMode + ".jpg"
+        return cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_" + illustMode + ".jpg"
     }
 
     renderElements() {

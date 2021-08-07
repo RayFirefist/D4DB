@@ -13,8 +13,10 @@ import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import RowInformation from "../../components/common/rowInfo";
 import timestampToString from "../../utils/time/timeString";
 import SafeImageLoader from "../../components/common/safeImage";
+import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
+const cdns = new Cdn();
 
 class DjEventEntryPage extends React.Component {
     constructor(props) {
@@ -42,7 +44,7 @@ class DjEventEntryPage extends React.Component {
 
     componentDidMount() {
         fetch("/api/dbs", {
-            body: JSON.stringify({ dbs: ["EventMaster", "CardMaster", "CharacterMaster", "UnitMaster"] }),
+            body: JSON.stringify({ dbs: ["EventMaster", "CardMaster", "CharacterMaster", "UnitMaster"], cdnKey: cdns.getCurrentCdnKey() }),
             headers: {
                 "Content-Type": "application/json"
             },
@@ -126,7 +128,6 @@ class DjEventEntryPage extends React.Component {
                     <RowInformation left={strings.getString("EVENT_START")} right={timestampToString(event.StartDate)} />
                     <RowInformation left={strings.getString("EVENT_RECEPTION_CLOSE_DATE")} right={timestampToString(event.ReceptionCloseDate)} />
                     <RowInformation left={strings.getString("EVENT_RANK_FIX_START_DATE")} right={timestampToString(event.RankFixStartDate)} />
-                    <RowInformation left={strings.getString("EVENT_RESULT_ANNOUNCE")} right={timestampToString(event.ResultAnnouncement)} />
                     <RowInformation left={strings.getString("EVENT_END")} right={timestampToString(event.EndDate)} />
 
                     {/* Event Assets */}

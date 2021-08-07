@@ -21,9 +21,11 @@ import {
 import { DifficultyBadge } from "./index";
 import { getAssetUrl } from "../../utils/assets/getAssetUrl.js";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Cdn from "../../utils/api/cdns.js";
 
 const consts = require("../../consts.json");
 const languages = new l10n();
+const cdns = new Cdn();
 
 class DjMusicEntryPage extends React.Component {
   constructor(props) {
@@ -52,7 +54,7 @@ class DjMusicEntryPage extends React.Component {
   componentDidMount() {
     fetch("/api/dbs", {
       body: JSON.stringify({
-        dbs: ["MusicMaster", "UnitMaster", "ChartMaster"]
+        dbs: ["MusicMaster", "UnitMaster", "ChartMaster"], cdnKey: cdns.getCurrentCdnKey()
       }),
       headers: {
         "Content-Type": "application/json"

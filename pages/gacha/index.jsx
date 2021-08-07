@@ -7,9 +7,11 @@ import { Card, Grid } from '@material-ui/core';
 import consts from '../../consts.json';
 import AbstractList from '../../components/common/listPage.tsx';
 import SafeImageLoader from '../../components/common/safeImage';
+import Cdn from '../../utils/api/cdns';
 //import l10n from '../../utils/l10n/l10n';
 
 //const strings = new l10n();
+const cdns = new Cdn();
 
 class DjGachaListPage extends AbstractList {
     constructor(props) {
@@ -26,12 +28,12 @@ class DjGachaListPage extends AbstractList {
 
     getIllustUrl(event) {
         let id = event.Id.toString()
-        return consts.cdn + "ondemand/banner/banner_gacha_" + id.padStart(4, "0") + ".png"
+        return cdns.getCdnAddress() + "ondemand/banner/banner_gacha_" + id.padStart(4, "0") + ".png"
     }
 
     getIllustUrl2(event) {
         let id = event.Id.toString()
-        return consts.cdn + "ondemand/gacha/top/banner/" + id.padStart(4, "0") + ".png"
+        return cdns.getCdnAddress() + "ondemand/gacha/top/banner/" + id.padStart(4, "0") + ".png"
     }
 
     renderElements() {
