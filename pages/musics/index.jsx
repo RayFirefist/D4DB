@@ -87,13 +87,17 @@ const MusicCardListView = ({ music, unit, charts }) => {
                             display="flex"
                             justifyContent="center"
                             alignItems="stretch"
-                            maxWidth="150px"
+                            width="150px"
+                            height="150px"
                             marginRight="10px"
+                            flexShrink="0"
                         >
                             <SafeImageLoader
                                 src={getIllustUrl(music)}
-                                style={{ width: "100%", height: "auto" }}
                                 alt={music.Id}
+                                style={{
+                                    width: "100%"
+                                }}
                             />
                         </Box>
                         <Box width="100%">

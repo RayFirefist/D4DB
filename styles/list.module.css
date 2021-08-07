@@ -7,14 +7,8 @@
     width: 100%;
 }
 
-.musicIcon {
-    max-width: 150px;
-    width: 100%;
-}
-
-.bannerIcon {
-    width: 100%;
-    max-width: 300px;
+.responsiveIcon {
+    object-fit: contain;
 }
 
 

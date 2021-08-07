@@ -25,6 +25,9 @@ class DjL10n {
     }, {
         code: "zh-hans",
         name: "简体中文"
+    }, {
+        code: "th",
+        name: "ภาษาไทย"
     }]
 
     // Setting the language to use
