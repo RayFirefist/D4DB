@@ -13,7 +13,7 @@
         "@material-ui/lab": "^4.0.0-alpha.57",
         "global": "^4.4.0",
         "mdi-material-ui": "^6.22.0",
-        "next": "^10.0.9",
+        "next": ">=11.1.1",
         "next-build-id": "^3.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
