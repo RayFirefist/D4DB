@@ -52,7 +52,6 @@ class MyApp extends React.Component {
                         name="viewport"
                         content="minimum-scale=1, initial-scale=1, width=device-width"
                     />
-                    <script src="http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
                 </Head>
                 <ResponsiveBase
                     body={<Component {...pageProps} />}
