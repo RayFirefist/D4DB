@@ -1,12 +1,12 @@
 export let config = [
     {
         cdnKey: "ja",
-        cdnAddress: "https://api.gurumiku.makoo.eu/assets/",
+        cdnAddress: "https://api.d4db.xyz/assets/",
         cdnL10n: "CDN_JAPANESE"
     },
     {
         cdnKey: "en",
-        cdnAddress: "https://api.gurumiku.makoo.eu/assets_en/",
+        cdnAddress: "https://api.d4db.xyz/assets_en/",
         cdnL10n: "CDN_ENGLISH"
     },
     {

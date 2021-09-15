@@ -1,7 +1,7 @@
 {
-    "name": "D4DB (仮)",
-    "version": "0.0.7 α",
-    "cdn": "https://api.gurumiku.makoo.eu/assets/",
+    "name": "D4DB",
+    "version": "0.0.7.1 α",
+    "cdn": "https://api.d4db.xyz/assets/",
     "l10n_path": "/l10n/",
     "beatmaps_path": "/maps/",
     "debug_api": true

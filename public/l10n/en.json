@@ -21,6 +21,7 @@
     "COMMON_OPEN_ALPHA_WARNING": "This website is now under open alpha. Expect to having many incomplete features and bugs.",
     "COMMON_OPEN_ALPHA2_WARNING": "Server is under alpha staging. Expect to have possible delayed assets/data updates and please report to the developers (RayFirefist#4649 on Discord or on GitHub repository) any bug/error.",
     "COMMON_CHANGE_SERVER_INFO": "Now it's possible to display English Server data. Click on the gear on the top-right screen and you will be able to switch the server information to display.",
+    "COMMON_NEW_DOMAIN_WARNING": "D4DB now uses a newer domain. It's `www.d4db.xyz`. Right now the old links will automatically redirect you to the newer domain, but in the future the old urls will cease to work.",
     "BUTTON_CHANGE_ARTWORK": "Change Artwork",
     "BUTTON_DOWNLOAD": "Download",
     "BUTTON_CLOSE": "Close",

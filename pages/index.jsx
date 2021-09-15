@@ -132,6 +132,10 @@ class HomePage extends React.Component {
                     <h1>{strings.getString("HOME_TITLE")}</h1>
                     <br></br>
                 </div>
+                <Alert severity={"warning"} style={{ textAlign: "left" }}>
+                    {strings.getString("COMMON_NEW_DOMAIN_WARNING")}
+                </Alert>
+                <br />
                 <Alert severity={"info"} style={{ textAlign: "left" }}>
                     {strings.getString("COMMON_CHANGE_SERVER_INFO")}
                 </Alert>

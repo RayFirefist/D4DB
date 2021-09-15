@@ -8,7 +8,7 @@ const DEFAULT_CDN_KEY = "ja";
 const DEFAULT_CDN_CONFIG = [
     {
         cdnKey: "ja",
-        cdnAddress: "https://api.gurumiku.makoo.eu/assets/",
+        cdnAddress: "https://api.d4db.xyz/assets/",
         cdnL10n: "CDN_JAPANESE"
     }
 ];
