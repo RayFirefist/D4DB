@@ -72,7 +72,7 @@ class DjCardsEntryPage extends React.Component {
 
     getIllustUrl() {
         const card = this.state.card;
-        return cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_" + card.Rarity == 7 ? 1 : this.state.illust + ".jpg"
+        return cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_" + (card.Rarity == 7 ? 1 : this.state.illust) + ".jpg"
     }
 
     swapIllust() {
