@@ -149,9 +149,14 @@ class D4DJCardIcon extends Component {
             this.frameClass = classes['frame' + this.props.rarity + type];
         }
 
-        let rarity = []
+        let rarity = [];
+        let rarityInt = this.props.rarity;
 
-        for (let i = 0; i < this.props.rarity; i++) {
+        if (rarityInt == 7) {
+            rarityInt = 4;
+        }
+
+        for (let i = 0; i < rarityInt; i++) {
             rarity.push(<img src={"/assets/chara/rarity/normal.png"} style={classes["star" + (i+1)]} alt="" />)
         }
 

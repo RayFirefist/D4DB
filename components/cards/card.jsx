@@ -37,8 +37,14 @@ class D4DJCard extends React.Component {
             return <img src={this.state.cardIllust} className={classes.card}/>
         }
 
+        let rarityInt = this.props.rarity;
+
+        if (rarityInt == 7) {
+            rarityInt = 4;
+        }
+
         return <img 
-            src={"/assets/chara/frame/frame{0}.png".format(this.state.rarity)} 
+            src={"/assets/chara/frame/frame{0}.png".format(rarityInt)} 
             className={classes.card} 
             style={{background: `url(${this.state.cardIllust})`}} 
             alt={"frame"}
