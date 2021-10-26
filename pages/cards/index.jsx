@@ -28,6 +28,14 @@ class DjCardsListPage extends AbstractList {
     }
 
     getIllustUrl(card, illustMode = 0) {
+
+        if (card.Rarity < 3) {
+            illustMode = 0;
+        }
+        else if (card.Rarity == 7) {
+            illustMode = 1
+        }
+
         return cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_" + illustMode + ".jpg"
     }
 

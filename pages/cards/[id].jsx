@@ -58,9 +58,16 @@ class DjCardsEntryPage extends React.Component {
                     return this.setState({ error: "element not found" })
 
                 let chara = json.CharacterMaster[card['Character']]
+
+                let illust = 0
+
+                if (card.Rarity == 7) {
+                    illust = 1
+                }
+
                 this.setState({ card: card, character: chara, loading: false })
             })
-            .catch(err => this.setState({ error: err, loading: false }))
+            .catch(err => this.setState({ error: err, loading: false, illust: illust }))
     }
 
     getIllustUrl() {
@@ -118,7 +125,7 @@ class DjCardsEntryPage extends React.Component {
             <D4DJCard cardIllust={this.getIllustUrl()} rarity={card.Rarity}/>
             <br></br>
             <br></br>
-            <div hidden={card.Rarity < 3}>
+            <div hidden={card.Rarity < 3 || card.Rarity == 7}>
                 <Button type="primary" onClick={() => this.swapIllust()} hidden={card.Rarity < 3}>{strings.getString("BUTTON_CHANGE_ARTWORK")}</Button>
             </div>
 
@@ -153,7 +160,7 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 0} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg")}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity == 7} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg")}>
                     <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_chara/card_chara_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
@@ -167,7 +174,7 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 1} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`)}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity == 7}  onClick={() => this.openModal(`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`)}>
                     <SafeImageLoader src={`${cdns.getCdnAddress()}AssetBundles/iOS/ondemand_card_chara_transparent_0${card.Id}_0_extracted/card_chara_transparent_0${card.Id}_0.png`} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
@@ -180,7 +187,7 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 2} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity == 7} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg")}>
                     <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_icon/card_icon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>
@@ -193,7 +200,7 @@ class DjCardsEntryPage extends React.Component {
             </div>
             <div hidden={this.state.tab !== 3} align="center">
                 <br />
-                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg")}>
+                <Card variant="outlined" style={{ margin: "10px", maxWidth: "250px", paddingTop: "10px" }} hidden={card.Rarity == 7} onClick={() => this.openModal(cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg")}>
                     <SafeImageLoader src={cdns.getCdnAddress() + "ondemand/card_bigIcon/card_bigIcon_0" + card.Id + "_0.jpg"} style={{ maxWidth: "90%" }} />
                     <p>{strings.getString("CARDS_ILLUST_NORMAL")}</p>
                 </Card>

@@ -103,6 +103,13 @@ const classes = {
         width: "72px",
         height: "72px",
         position: "absolute"
+    },
+    frame7: {
+        background: "url('/assets/chara/icon/frame4.png')",
+        backgroundSize: "100% 100%",
+        width: "72px",
+        height: "72px",
+        position: "absolute"
     }
 }
 
