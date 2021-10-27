@@ -111,9 +111,13 @@ class DjMemberEntryPage extends React.Component {
             <Typography variant="h3" align="left">
               {lang === "jp" ? chara.FullName : localName}
             </Typography>
-            <Typography variant="h6" align="left" gutterBottom={true}>
-              {lang === "jp" ? localName : chara.FullName}
-            </Typography>
+            {
+              (chara.FullName !== localName) && (
+                <Typography variant="h6" align="left" gutterBottom={true}>
+                  {lang === "jp" ? localName : chara.FullName}
+                </Typography>
+              )
+            }
             <Table aria-label="simple table">
               <TableBody>
                 <TableRow>
