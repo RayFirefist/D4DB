@@ -104,6 +104,9 @@ class DjGachaEntryPage extends React.Component {
     }
 
     getIllustUrl(card, illustMode = 0) {
+        if (card.Rarity === 7) {
+            illustMode = 1;
+        }
         return (
             cdns.getCdnAddress() +
             "ondemand/card_icon/card_icon_0" +
@@ -182,7 +185,8 @@ class DjGachaEntryPage extends React.Component {
                             return (
                                 <D4DJCardIcon
                                     illustUrl={this.getIllustUrl({
-                                        Id: cardId
+                                        Id: cardId,
+                                        Rarity: cardData.Rarity
                                     })}
                                     rarity={cardData.Rarity}
                                     typeId={cardData.Attribute}

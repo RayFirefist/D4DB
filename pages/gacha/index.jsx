@@ -56,7 +56,8 @@ class DjGachaListPage extends AbstractList {
             if (gacha.CardName === "※危険トランプ追加用")
                 return;
 
-            if (!gacha.IsTutorial)
+            // if (!gacha.IsTutorial)
+            if (!gacha.Id > 999999990)
                 return;
 
             out.push(<Link href={"/gacha/" + gacha.Id}>
