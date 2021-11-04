@@ -70,10 +70,21 @@ class DjEventEntryPage extends React.Component {
 
     getCharaUrl() {
         const event = this.state.event;
+        console.log(event);
         return getAssetUrl(
             `AssetBundles/iOS`,
             `ondemand_card_chara_transparent_0${event.DisplayCard}_${event.DisplayCardType._value_}_extracted/card_chara_transparent_0${event.DisplayCard}_${event.DisplayCardType._value_}.png`
         );
+    }
+
+    getIllustUrl(event) {
+        try {
+            let id = event.Id.toString();
+            return `${cdns.getCdnAddress()}ondemand/event/event_${id}/banner_event.png`;
+        }
+        catch (e) {
+            return null;
+        }
     }
 
     getBgUrl() {
@@ -107,6 +118,7 @@ class DjEventEntryPage extends React.Component {
         return (
             <div>
                 <div align="left"><h1>{event.Name}</h1></div>
+                {/*
                 <div style={{ position: "relative" }}>
                     <SafeImageLoader src={this.getCharaUrl()} style={{
                         width: "100%",
@@ -118,6 +130,8 @@ class DjEventEntryPage extends React.Component {
                     overrideStyle={true}
                     transparent={true}/>
                 </div>
+                */}
+                <img src={this.getIllustUrl(event)} style={{width: "100%", maxWidth:"500px"}} alt={"event banner"}/>
                 <br />
                 <br />
 
