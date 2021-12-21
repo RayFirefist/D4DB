@@ -42,40 +42,38 @@ class DjEventsListPage extends AbstractList {
 
         let out = [];
 
-        Object.keys(events).sort((a, b) => (parseInt(a) > parseInt(b)) ? 1 : -1).reverse().forEach( event => {
+        Object.keys(events).sort((a, b) => (parseInt(a) > parseInt(b)) ? 1 : -1).reverse().forEach(event => {
             event = events[`${event}`];
 
             if (event.CardName === "※危険トランプ追加用") return;
 
             out.push(
-                <Link href={"/events/" + event.Id}>
-                    <Card className={this.classes.card}>
-                        <Grid container>
-                            <Grid item xs={0} sm={1}></Grid>
-                            <Grid item xs={12} sm={5}>
-                                <Box
-                                    display="flex"
-                                    width="100%"
-                                    height="100px"
-                                    justifyContent="center"
-                                >
+                <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
+                    <Link href={"/events/" + event.Id}>
+                        <Card className={this.classes.card}>
+                            <Grid container>
+                                <Grid item xs={12}>
                                     <SafeImageLoader
                                         src={this.getIllustUrl(event)}
                                         alt={event.Id}
                                         className={this.classes.responsiveIcon}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            maxHeight: "85px"
+                                        }}
                                     />
-                                </Box>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div style={{ textAlign: "center", paddingTop: "10px" }}>
+                                        <b>{event.Name}</b>
+                                        <p>{strings.getString(`EVENT_TYPE__${event.Type._name_}`, event.Type._name_)}</p>
+                                    </div>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={0} sm={1}></Grid>
-                            <Grid item xs={12} sm={5}>
-                                <div style={{ textAlign: "left", paddingTop: "10px" }}>
-                                    <b>{event.Name}</b>
-                                    <p>{strings.getString(`EVENT_TYPE__${event.Type._name_}`, event.Type._name_)}</p>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </Card>
-                </Link>
+                        </Card>
+                    </Link>
+                </Grid>
             );
         });
 

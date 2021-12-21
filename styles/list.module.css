@@ -15,6 +15,6 @@
 /* card tag, not the card */
 
 .card {
-    padding: 30px;
-    margin: 30px;
+    padding: 30px 30px 15px;
+    margin: 30px 30px 15px;
 }

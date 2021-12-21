@@ -9,7 +9,8 @@ const classes = {
     iconContainer: {
         width: "72px", // 100%
         height: "72px",
-        position: "relative"
+        position: "relative",
+        display: "inline-block"
     },
     illust: {
         width: "68px", // 93,05555556%

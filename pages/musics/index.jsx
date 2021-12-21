@@ -51,13 +51,15 @@ class DjCardsListPage extends AbstractList {
             if (music.CardName === "※危険トランプ追加用") continue;
 
             out.push(
-                <div key={`music-${music.Id}`} style={{ margin: "10px" }}>
-                    <MusicCardListView
-                        music={music}
-                        unit={units[music.Unit]}
-                        charts={charts}
-                    />
-                </div>
+                <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
+                    <div key={`music-${music.Id}`} style={{ margin: "10px" }}>
+                        <MusicCardListView
+                            music={music}
+                            unit={units[music.Unit]}
+                            charts={charts}
+                        />
+                    </div>
+                </Grid>
             );
         }
 
@@ -76,113 +78,97 @@ const MusicCardListView = ({ music, unit, charts }) => {
         <Link href={"/musics/" + music.Id}>
             <Card>
                 <CardContent style={{ height: "100%" }}>
-                    <Box
-                        display="flex"
-                        height="100%"
-                        width="100%"
-                        alignItems="stretch"
-                    >
-                        <Box
-                            flexDirection="column"
-                            display="flex"
-                            justifyContent="center"
-                            alignItems="stretch"
-                            width="150px"
-                            height="150px"
-                            marginRight="10px"
-                            flexShrink="0"
-                        >
-                            <SafeImageLoader
-                                src={getIllustUrl(music)}
-                                alt={music.Id}
-                                style={{
-                                    width: "100%"
-                                }}
-                            />
-                        </Box>
-                        <Box width="100%">
-                            <Box
-                                flexDirection="column"
-                                display="flex"
-                                height="100%"
-                            >
-                                <Box flexGrow={1} height="100%">
-                                    <Typography
-                                        variant="h6"
-                                        align="left"
-                                        gutterBottom={false}
-                                    >
-                                        {music.Name}
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle1"
-                                        align="left"
-                                    >
-                                        {music.Unit !== 50 && music.Unit !== 30
-                                            ? unit.Name + " - "
-                                            : music.SpecialUnitName &&
-                                              music.SpecialUnitName + " - "}
-                                        {strings.getString(
-                                            `MUSIC_CATEGORY__${music.Category._name_}`,
-                                            music.Category._name_
-                                        )}
-                                    </Typography>
-                                </Box>
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        <Grid item>
-                                            <DifficultyBadge
-                                                difficulty="Easy"
-                                                color="rgb(43,135,231)"
-                                                level={
-                                                    charts[music.Id + "1"]
-                                                        ?.OverrideLevel ||
-                                                    charts[music.Id + "1"]
-                                                        ?.Level
-                                                }
-                                            />
-                                        </Grid>
-                                        <Grid item>
-                                            <DifficultyBadge
-                                                difficulty="Normal"
-                                                color="rgb(90,196,76)"
-                                                level={
-                                                    charts[music.Id + "2"]
-                                                        ?.OverrideLevel ||
-                                                    charts[music.Id + "2"]
-                                                        ?.Level
-                                                }
-                                            />
-                                        </Grid>
-                                        <Grid item>
-                                            <DifficultyBadge
-                                                difficulty="Hard"
-                                                color="rgb(238,172, 92)"
-                                                level={
-                                                    charts[music.Id + "3"]
-                                                        ?.OverrideLevel ||
-                                                    charts[music.Id + "3"]
-                                                        ?.Level
-                                                }
-                                            />
-                                        </Grid>
-                                        <Grid item>
-                                            <DifficultyBadge
-                                                difficulty="Expert"
-                                                color="rgb(239,72, 83)"
-                                                level={
-                                                    charts[music.Id + "4"]
-                                                        ?.OverrideLevel ||
-                                                    charts[music.Id + "4"]
-                                                        ?.Level
-                                                }
-                                            />
-                                        </Grid>
+                    <div align="center">
+                        <Grid container spacing={2} justify="center">
+                            <Grid item sm={12} md={6} lg={6}>
+                                <SafeImageLoader
+                                    src={getIllustUrl(music)}
+                                    alt={music.Id}
+                                    style={{
+                                        width: "100%",
+                                        maxWidth: "300px"
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item sm={12} md={6} lg={6}>
+
+                                {/* Title */}
+                                <Typography
+                                    variant="h6"
+                                    align="center"
+                                    gutterBottom={false}
+                                >
+                                    {music.Name}
+                                </Typography>
+                                <Typography
+                                    variant="subtitle1"
+                                    align="center"
+                                >
+                                    {music.Unit !== 50 && music.Unit !== 30
+                                        ? unit.Name + " - "
+                                        : music.SpecialUnitName &&
+                                        music.SpecialUnitName + " - "}
+                                    {strings.getString(
+                                        `MUSIC_CATEGORY__${music.Category._name_}`,
+                                        music.Category._name_
+                                    )}
+                                </Typography>
+
+                                {/* Difficulty */}
+                                <Grid container spacing={1} justify="center">
+                                    <Grid item>
+                                        <DifficultyBadge
+                                            difficulty="Easy"
+                                            color="rgb(43,135,231)"
+                                            level={
+                                                charts[music.Id + "1"]
+                                                    ?.OverrideLevel ||
+                                                charts[music.Id + "1"]
+                                                    ?.Level || "?"
+                                            }
+                                        />
                                     </Grid>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
+                                    <Grid item>
+                                        <DifficultyBadge
+                                            difficulty="Normal"
+                                            color="rgb(90,196,76)"
+                                            level={
+                                                charts[music.Id + "2"]
+                                                    ?.OverrideLevel ||
+                                                charts[music.Id + "2"]
+                                                    ?.Level || "?"
+                                            }
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <DifficultyBadge
+                                            difficulty="Hard"
+                                            color="rgb(238,172, 92)"
+                                            level={
+                                                charts[music.Id + "3"]
+                                                    ?.OverrideLevel ||
+                                                charts[music.Id + "3"]
+                                                    ?.Level || "?"
+                                            }
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <DifficultyBadge
+                                            difficulty="Expert"
+                                            color="rgb(239,72, 83)"
+                                            level={
+                                                charts[music.Id + "4"]
+                                                    ?.OverrideLevel ||
+                                                charts[music.Id + "4"]
+                                                    ?.Level || "?"
+                                            }
+                                        />
+                                    </Grid>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </div>
                 </CardContent>
             </Card>
         </Link>

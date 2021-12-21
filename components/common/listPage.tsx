@@ -2,7 +2,7 @@ import React from "react";
 import l10n from "../../utils/l10n/l10n";
 import classes from "../../styles/list.module.css";
 import LoadingComponent from "./loading";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import Cdn from "../../utils/api/cdns";
 
 const strings = new l10n();
@@ -45,7 +45,7 @@ abstract class DjAbstractListPage extends React.Component {
 
   componentDidMount() {
     fetch("/api/dbs", {
-      body: JSON.stringify({ dbs: this.databases, cdnKey: cdns.getCurrentCdnKey()}),
+      body: JSON.stringify({ dbs: this.databases, cdnKey: cdns.getCurrentCdnKey() }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -83,7 +83,7 @@ abstract class DjAbstractListPage extends React.Component {
       // CREATE
       filters[key] = [value]
     }
-    this.setState({filters: filters});
+    this.setState({ filters: filters });
   }
 
   render() {
@@ -108,7 +108,9 @@ abstract class DjAbstractListPage extends React.Component {
         </div>
 
         {/* Information */}
-        {elements}
+        <Grid container>
+          {elements}
+        </Grid>
       </div>
     );
   }

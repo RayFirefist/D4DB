@@ -149,7 +149,7 @@ class ResponsiveBase extends React.Component {
         <div align="center" style={{ width: "100%" }}>
           {/** className={classes.content} */}
           <div className={classes.toolbar} />
-          <Container maxWidth="md" style={{ paddingTop: "20px" }}>
+          <Container maxWidth="xl" style={{ paddingTop: "20px" }}>
             {this.props.body}
           </Container>
         </div>

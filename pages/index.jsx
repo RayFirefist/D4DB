@@ -10,7 +10,7 @@ import Cdn from "../utils/api/cdns";
 
 const strings = new l10n();
 const cdns = new Cdn();
-const forbiddenGachaId = [4, 5, 6, 8, 9, 980000001, 999999991, 999999992, 999999993, 999999994, 999999995, 999999996, 999999999];
+const forbiddenGachaId = [4, 5, 6, 8, 9, 980000001, 999999991, 999999992, 999999993, 999999994, 999999995, 999999996, 999999999, 990000012, 990000014, 990000010, 990000011, 990000013, 990000015, 990000016, 11, 10];
 
 class HomePage extends React.Component {
     state = {

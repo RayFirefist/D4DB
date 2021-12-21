@@ -42,7 +42,7 @@ class DjCardsListPage extends AbstractList {
     renderElements() {
         let cards = this.state.databases.CardMaster;
         let charas = this.state.databases.CharacterMaster;
-        
+
         let out = []
 
         for (let card in cards) {
@@ -52,24 +52,25 @@ class DjCardsListPage extends AbstractList {
                 continue;
 
             out.push(<Link href={"/cards/" + card.Id}>
-                <Card className={this.classes.card}>
-                    <Grid container>
+                <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+                    <Card className={this.classes.card}>
+
                         <Grid item xs={1}></Grid>
-                        <Grid item>
+                        <div align="center" style={{display: "inline-block"}}>
                             {/* <img src={this.getIllustUrl(card)} alt={card.Id} className={this.classes.cardIcon} /> */}
-                            <D4DJCardIcon illustUrl={this.getIllustUrl(card)} rarity={card.Rarity} typeId={card.Attribute}/>
-                        </Grid>
+                            {card.Rarity < 7 && <D4DJCardIcon illustUrl={this.getIllustUrl(card)} rarity={card.Rarity} typeId={card.Attribute} />}
+                            {card.Rarity > 2 && <D4DJCardIcon illustUrl={this.getIllustUrl(card, 1)} rarity={card.Rarity} typeId={card.Attribute} />}
+                        </div>
                         <Grid item xs={1}></Grid>
-                        <Grid item xs={4} sm={6} md={8}>
-                            <div style={{textAlign: "left"}}>
-                                <b>{this.isJp
-                                    ? charas[card.Character].FullName
-                                    : strings.getString(`CHR__${charas[card.Character].FullNameEnglish}`, charas[card.Character].FullNameEnglish)}</b>
-                                <p>{card.CardName}</p>
-                            </div>
-                        </Grid>
-                    </Grid>
-                </Card>
+                        <div style={{ textAlign: "center" }}>
+                            <b>{this.isJp
+                                ? charas[card.Character].FullName
+                                : strings.getString(`CHR__${charas[card.Character].FullNameEnglish}`, charas[card.Character].FullNameEnglish)}</b>
+                            <p>{card.CardName}</p>
+                        </div>
+
+                    </Card>
+                </Grid>
             </Link>)
         }
 
