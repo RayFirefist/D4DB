@@ -28,9 +28,6 @@ export const SpineView = (props) => {
     const [animation1, setAnimation1] = useState("00_stay");
     const [animation2, setAnimation2] = useState("00_stay");
 
-    // const towaLive2d = useRef<Live2DModel>();
-    // const muniLive2d = useRef<Live2DModel>();
-
     useEffect(() => {
         pixi.current = new Application({
             backgroundAlpha: 0,
@@ -165,7 +162,7 @@ export const SpineView = (props) => {
 
                             <NativeSelect
                                 defaultValue={"d"}
-                                value={animation1}
+                                value={animation2}
                                 onChange={(_) => setAnimationModel2(_.target.value)}
 
                                 inputProps={{
