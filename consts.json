@@ -1,6 +1,6 @@
 {
     "name": "D4DB",
-    "version": "0.0.7.2 α",
+    "version": "0.1",
     "cdn": "https://api.d4db.xyz/assets/",
     "l10n_path": "/l10n/",
     "beatmaps_path": "/maps/",
