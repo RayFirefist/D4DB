@@ -103,6 +103,11 @@ class DrawerContents extends React.Component {
                                 <ListItemText primary={strings.getString("LIVE2D_TITLE")} />
                             </ListItem>
                         </Link>
+                        <Link href="/spine">
+                            <ListItem button className={classes.nested}>
+                                <ListItemText primary={strings.getString("SPINE_TITLE")} />
+                            </ListItem>
+                        </Link>
                     </List>
                 </Collapse>
                 <ListItem button onClick={this.handleClickTools.bind(this)}>
