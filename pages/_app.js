@@ -8,7 +8,7 @@ import ResponsiveBase from '../components/common/base';
 //import theme from './../utils/darkMode/darkMode';
 
 // eslint-disable-next-line
-String.prototype.format = function() {
+String.prototype.format = function () {
     let a = this;
     for (let k in arguments) {
         a = a.replace('{' + k + '}', arguments[k]);
@@ -19,7 +19,7 @@ String.prototype.format = function() {
 };
 
 // eslint-disable-next-line
-Date.prototype.addDays = function(days) {
+Date.prototype.addDays = function (days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
@@ -48,6 +48,10 @@ class MyApp extends React.Component {
                     <title>
                         {consts.name} v{consts.version}
                     </title>
+                    {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
+                    <script src="/js/live2dcubismcore.min.js" />
+                    {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
+                    <script src="/js/live2d.min.js" />
                     <meta
                         name="viewport"
                         content="minimum-scale=1, initial-scale=1, width=device-width"
