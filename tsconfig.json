@@ -26,7 +26,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/spine/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]

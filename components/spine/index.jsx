@@ -18,15 +18,18 @@ const MUNI_EARS = [
 export const SpineView = (props) => {
 
     const { spineCharaJsonFilename, additionalSpineCharaJsonFilename, disableMuniBunnyEars } = props;
-    const pixi = useRef<Application>();
-    const parentRef = useRef<HTMLDivElement>(null);
+    const pixi = useRef(new Application({}));
+    const parentRef = React.useRef();
     const [width, height] = useSize(parentRef);
-    const [mode, setMode] = useState<0 | 1>(0);
+    const [mode, setMode] = useState(0);
     const [pose, setPose] = useState("hello");
     const [model1, setModel1] = useState(null);
     const [model2, setModel2] = useState(null);
     const [animation1, setAnimation1] = useState("00_stay");
     const [animation2, setAnimation2] = useState("00_stay");
+
+    console.log("pixi", parentRef);
+    console.log("props", props);
 
     useEffect(() => {
         pixi.current = new Application({
@@ -42,7 +45,7 @@ export const SpineView = (props) => {
         console.log(spineCharaJsonFilename, additionalSpineCharaJsonFilename, disableMuniBunnyEars);
 
         const init = async () => {
-            const resources: any = await new Promise((resolve) => {
+            const resources = await new Promise((resolve) => {
                 app.loader
                     .add("model1", getAssetUrl("ondemand/spine", spineCharaJsonFilename));
 
