@@ -45,7 +45,9 @@ class DjL10n {
     // If not translated yet, it will safely return just the variable, except
     // that the fallbackOverride is set, in which case it wil return the
     // overriden fallback value
-    getString(id, fallbackOverride) {
+    getString(id, fallbackOverride = null) {
+        if (fallbackOverride === null) 
+            fallbackOverride = id;
         let out = this.data[id]
         if (out === undefined || out === null)
             out = this.default[id]
