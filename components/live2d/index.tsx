@@ -33,6 +33,7 @@ export const Live2DViewer = (props) => {
         model.on("pointerup", () => (model.dragging = false));
     }
 
+    /**
     useEffect(async () => {
         pixi.current = new Application({
             autoStart: true,
@@ -64,7 +65,7 @@ export const Live2DViewer = (props) => {
         draggable(model);
         //addFrame(model);
         //addHitAreaFrames(model);
-    }, []);
+    }, []);*/
 
     function setMotion(motion) {
         modelLive2d.current?.motion("", getPose(modelLive2d.current, motion));
