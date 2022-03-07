@@ -6,7 +6,10 @@ import { ButtonGroup, Button, Select, Container, Slider, Typography } from "@mat
 import { getAssetUrl } from "../../utils/assets/getAssetUrl";
 
 export const Live2DViewer = (props) => {
-
+    
+    return "TODO";
+    
+    /**
     const { backgroundColor, models, } = props;
 
     const pixi = useRef<Application>();
@@ -33,7 +36,7 @@ export const Live2DViewer = (props) => {
         model.on("pointerup", () => (model.dragging = false));
     }
 
-    /**
+    
     useEffect(async () => {
         pixi.current = new Application({
             autoStart: true,
@@ -65,7 +68,7 @@ export const Live2DViewer = (props) => {
         draggable(model);
         //addFrame(model);
         //addHitAreaFrames(model);
-    }, []);*/
+    }, []);
 
     function setMotion(motion) {
         modelLive2d.current?.motion("", getPose(modelLive2d.current, motion));
@@ -109,6 +112,7 @@ export const Live2DViewer = (props) => {
             <Container innerRef={parentRef}></Container>
         </>
     );
+    */
 };
 
 export default Live2DViewer;
